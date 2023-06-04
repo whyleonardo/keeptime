@@ -8,6 +8,7 @@
     "@whyleonardo/eslint-config"
   ],
 	"rules": {
-		"tailwindcss/no-custom-classname": "off"
+		"tailwindcss/no-custom-classname": "off",
+		"react/prop-types": "off"
 	}
 }
