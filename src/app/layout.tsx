@@ -3,10 +3,12 @@ import { Metadata } from 'next'
 
 import { MediaSizeIndicator } from '@/components/MediaSizeIndicator'
 import { PageHeader } from '@/components/PageHeader'
+import { Toaster } from '@/components/ui/toaster'
 
 import { siteConfig } from '@/config/site'
 import { fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
+import { AuthProvider } from '@/providers/AuthProvider'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 
 export const metadata: Metadata = {
@@ -42,13 +44,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
 						fontSans.variable
 					)}
 				>
-					<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-						<div className="relative flex min-h-screen flex-col">
-							<PageHeader />
-							<div className="flex-1">{children}</div>
-						</div>
-						<MediaSizeIndicator />
-					</ThemeProvider>
+					<AuthProvider>
+						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+							<div className="relative flex min-h-screen flex-col overflow-x-hidden">
+								{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
+								{/* @ts-ignore -- Server Component */}
+								<PageHeader />
+								<div className="flex-1">{children}</div>
+							</div>
+							<MediaSizeIndicator />
+							<Toaster />
+						</ThemeProvider>
+					</AuthProvider>
 				</body>
 			</html>
 		</>
