@@ -23,6 +23,8 @@ export default async function DashboardPage() {
 							<p>{targetProfile(memory)?.full_name}</p>
 
 							<Avatar className="h-6 w-6">
+								{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
+								{/* @ts-ignore */}
 								<AvatarImage src={targetProfile(memory)?.avatar_url} />
 								<AvatarFallback>
 									{targetProfile(memory)?.full_name?.at(0)?.toUpperCase()}
