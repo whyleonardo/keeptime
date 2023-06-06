@@ -26,14 +26,14 @@ export const siteConfig = {
 			icon: Album
 		},
 		{
-			title: 'Settings',
-			href: '/dashboard/settings',
-			icon: Settings
-		},
-		{
 			title: 'Billing',
 			href: '/dashboard/billing',
 			icon: CreditCard
+		},
+		{
+			title: 'Settings',
+			href: '/dashboard/settings',
+			icon: Settings
 		}
 	],
 	links: {
