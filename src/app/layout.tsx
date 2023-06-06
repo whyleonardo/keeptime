@@ -40,13 +40,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<head />
 				<body
 					className={cn(
-						'min-h-screen bg-background font-sans antialiased',
+						'bg-background font-sans antialiased min-h-[calc(100vh-4rem)] overflow-y-hidden overflow-x-hidden',
 						fontSans.variable
 					)}
 				>
 					<AuthProvider>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-							<div className="relative flex min-h-screen flex-col overflow-x-hidden">
+							<div className="relative flex flex-col ">
 								{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
 								{/* @ts-ignore -- Server Component */}
 								<PageHeader />
