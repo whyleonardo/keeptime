@@ -1,8 +1,8 @@
 import '@/styles/globals.css'
 import { Metadata } from 'next'
 
-import { MediaSizeIndicator } from '@/components/MediaSizeIndicator'
 import { PageHeader } from '@/components/PageHeader'
+import { ScreenIndicator } from '@/components/ScreenIndicator'
 import { Toaster } from '@/components/ui/toaster'
 
 import { siteConfig } from '@/config/site'
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 								<PageHeader />
 								<div className="flex-1">{children}</div>
 							</div>
-							<MediaSizeIndicator />
+							<ScreenIndicator />
 							<Toaster />
 						</ThemeProvider>
 					</AuthProvider>
