@@ -2,9 +2,9 @@ export type SiteConfig = typeof siteConfig
 import { Album, Settings, CreditCard } from 'lucide-react'
 
 export const siteConfig = {
-	name: 'Next.js',
+	name: 'Keeptime',
 	description:
-		'Beautifully designed components built with Radix UI and Tailwind CSS.',
+		'Keeptime is a simple and beautiful way to capture and share your memories.',
 	mainNav: [
 		{
 			title: 'Home',
