@@ -20,6 +20,13 @@ export const PageHeader = async () => {
 		data: { user }
 	} = await supabase.auth.getUser()
 
+	const { data } = await supabase
+		.from('profiles')
+		.select('*')
+		.eq('id', user?.id)
+
+	const currentUser = data?.at(0)
+
 	return (
 		<header className="bg-background sticky top-0 z-40 w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
@@ -28,7 +35,7 @@ export const PageHeader = async () => {
 					<nav className="flex items-center space-x-1">
 						{user && (
 							<DropdownMenu>
-								<DropdownMenuTrigger className="flex items-center gap-2">
+								<DropdownMenuTrigger className="flex items-center gap-1">
 									<Image
 										alt="user avatar"
 										width={24}
@@ -37,13 +44,17 @@ export const PageHeader = async () => {
 										src={user?.user_metadata?.avatar_url}
 									/>
 
-									<span className="flex items-center gap-1">
-										{user?.user_metadata?.full_name}
-										<Icons.chevronDown className="h-6 w-6" />
-									</span>
+									<Icons.chevronDown className="h-6 w-6" />
 								</DropdownMenuTrigger>
 								<DropdownMenuContent align="end">
-									<DropdownMenuLabel>My Account</DropdownMenuLabel>
+									<DropdownMenuLabel>
+										<span className="block text-base font-medium">
+											{currentUser?.full_name}
+										</span>
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
+											{user.email}
+										</span>
+									</DropdownMenuLabel>
 									<DropdownMenuSeparator />
 									<DropdownMenuItem>
 										<Icons.logout className="h-4 w-6" />
