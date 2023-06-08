@@ -1,3 +1,33 @@
-export default function SettingsPage() {
-	return <div className="flex flex-col gap-4"></div>
+import { Metadata } from 'next'
+
+import { EditProfileForm } from '@/components/Forms/EditProfileForm'
+
+import { sbServer as supabase } from '@/services/supabase/server'
+
+export const metadata: Metadata = {
+	title: 'Settings',
+	description: 'Manage account and website settings.'
+}
+
+export default async function SettingsPage() {
+	const {
+		data: { user }
+	} = await supabase.auth.getUser()
+
+	const { data } = await supabase
+		.from('profiles')
+		.select('*')
+		.eq('id', user?.id)
+
+	const currentUser = data?.at(0)
+
+	return (
+		<div className="flex w-full flex-col gap-8">
+			<span className="text-muted-foreground text-lg">
+				Manage account and website settings.
+			</span>
+
+			<EditProfileForm profile={currentUser} />
+		</div>
+	)
 }
