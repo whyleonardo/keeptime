@@ -9,26 +9,19 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/ui/use-toast'
 
+import { profileSchema } from '@/lib/validations/profile'
 import { sbClient as supabase } from '@/services/supabase/client'
 import { Profile } from '@/types/profile'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-const editProfileSchema = z.object({
-	username: z.string().min(3).max(20),
-	fullname: z.string().min(3).max(30),
-	website: z.union([
-		z
-			.string()
-			.url('This URL is invalid. Please check if URL contains "https://"')
-			.nullish(),
-		z.literal('')
-	])
-})
+type FormData = z.infer<typeof profileSchema>
 
-type FormData = z.infer<typeof editProfileSchema>
+interface EditProfileFormProps {
+	profile: Profile
+}
 
-export const EditProfileForm = ({ profile }: Profile) => {
+export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false)
 
 	const {
@@ -36,7 +29,7 @@ export const EditProfileForm = ({ profile }: Profile) => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm<FormData>({
-		resolver: zodResolver(editProfileSchema)
+		resolver: zodResolver(profileSchema)
 	})
 
 	async function onSubmit(data: FormData) {
