@@ -5,8 +5,10 @@ import {
 	SunMedium,
 	Twitter,
 	ChevronLeft,
+	MoreVertical,
 	Loader2,
 	LogOut,
+	Plus,
 	type Icon as LucideIcon
 } from 'lucide-react'
 
@@ -15,8 +17,10 @@ export type Icon = LucideIcon
 export const Icons = {
 	chevronLeft: ChevronLeft,
 	chevronDown: ChevronDown,
+	plus: Plus,
 	logout: LogOut,
 	spinner: Loader2,
+	more: MoreVertical,
 	sun: SunMedium,
 	moon: Moon,
 	twitter: Twitter,
