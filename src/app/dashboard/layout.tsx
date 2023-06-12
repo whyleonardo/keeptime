@@ -1,5 +1,6 @@
 import { DashboardPageTitle } from '@/components/DashboardPageTitle'
 import { SidebarNav } from '@/components/Nav/SidebarNav'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 export default function DashboardLayout({
 	children
@@ -12,10 +13,11 @@ export default function DashboardLayout({
 				<SidebarNav />
 			</aside>
 
-			<div className="min-h-screen w-full overflow-y-auto p-6 pb-20">
+			<ScrollArea className="min-h-screen w-full p-6 pb-20">
+				<ScrollBar />
 				<DashboardPageTitle />
 				{children}
-			</div>
+			</ScrollArea>
 		</div>
 	)
 }
