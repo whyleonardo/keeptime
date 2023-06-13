@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Icons } from '@/components/Icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import {
 	Card,
 	CardContent,
@@ -19,14 +17,24 @@ import { dateFormat } from '@/utils/dateFormat'
 interface MemoryCardProps {
 	memory: Memory
 	targetProfile: (string: { user_id: string }) => Profile
+	mediaPath: (path: string) => {
+		publicUrl: string
+	}
 }
 
-export const MemoryCard = ({ memory, targetProfile }: MemoryCardProps) => {
+export const MemoryCard = ({
+	memory,
+	targetProfile,
+	mediaPath
+}: MemoryCardProps) => {
+	const { publicUrl } = mediaPath(memory?.media_path as string)
+
+	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
+
 	return (
 		<Card className="flex h-full w-full flex-col items-center overflow-hidden lg:w-5/6">
 			<CardHeader>
 				<CardTitle>{memory.title}</CardTitle>
-				{/*  */}
 			</CardHeader>
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
@@ -35,11 +43,18 @@ export const MemoryCard = ({ memory, targetProfile }: MemoryCardProps) => {
 						{dateFormat(new Date(memory.created_at))}
 					</span>
 
-					<div className="relative h-[28rem] w-full rounded-md bg-gradient-to-br from-purple-500 via-red-500 to-orange-500">
-						<button className="absolute right-4 top-4 transition-transform hover:scale-125">
-							<Icons.more />
-						</button>
-					</div>
+					{mediaType == 'image' ? (
+						<Image
+							src={publicUrl}
+							width={480}
+							height={360}
+							alt=""
+							className="aspect-[9/16] w-full rounded md:aspect-square"
+						/>
+					) : (
+						<video src={publicUrl} controls className="aspect-video" />
+					)}
+
 					<Link
 						href={`/dashboard/profile/${targetProfile(memory)?.username}`}
 						className="group ml-2 mt-2 flex items-center gap-1 self-start "
