@@ -5,4 +5,5 @@ export type Memory = {
 	is_public: boolean
 	title: string
 	user_id: string
+	media_path: string | null
 }
