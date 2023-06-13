@@ -9,7 +9,7 @@ export default function DashboardLayout({
 }) {
 	return (
 		<div className="flex h-full min-h-screen w-full">
-			<aside className="hidden w-72 flex-col gap-4 border-r p-4 sm:flex">
+			<aside className="hidden w-72 flex-col gap-4 p-4 sm:flex">
 				<SidebarNav />
 			</aside>
 
