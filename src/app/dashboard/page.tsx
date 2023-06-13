@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 
 import { MemoryCard } from '@/components/Cards/MemoryCard'
-import { Icons } from '@/components/Icons'
-import { Button } from '@/components/ui/button'
+import { CreateMemorySheet } from '@/components/Sheets/CreateMemorySheet'
 
 import { sbServer as supabase } from '@/services/supabase/server'
 
@@ -22,6 +21,11 @@ export default async function DashboardPage() {
 		profiles &&
 		profiles.find((profile) => profile.id === memory.user_id && profile)
 
+	const mediaPath = (path: string) => {
+		const { data: media } = supabase.storage.from('medias').getPublicUrl(path)
+		return media
+	}
+
 	const memoriesSortedByDate =
 		memories &&
 		memories.sort((a, b) => {
@@ -37,18 +41,13 @@ export default async function DashboardPage() {
 					memoriesSortedByDate.map((memory) => (
 						<MemoryCard
 							key={memory.id}
+							mediaPath={mediaPath}
 							memory={memory}
 							targetProfile={targetProfile}
 						/>
 					))}
 
-				<Button
-					variant="default"
-					className="fixed bottom-4 right-[3.225rem] flex max-w-fit items-center gap-2"
-				>
-					<Icons.plus />
-					<span className="hidden lg:inline-block">Create Memory</span>
-				</Button>
+				<CreateMemorySheet />
 			</div>
 		</>
 	)
