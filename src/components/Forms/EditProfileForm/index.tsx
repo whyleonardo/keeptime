@@ -76,7 +76,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 			<div className="mb-4">
 				<h2 className="text-lg font-semibold">Edit Your Profile</h2>
 
-				<span className="text-muted-foreground text-sm">
+				<span className="text-sm text-muted-foreground">
 					Personalize your name, username and your website if you have.
 				</span>
 			</div>
@@ -84,7 +84,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 			<div className="flex flex-col gap-6">
 				<div className="relative w-full  md:w-80">
 					<Label
-						className="bg-background absolute -top-2 left-3 px-1"
+						className="absolute -top-2 left-3 bg-background px-1"
 						htmlFor="fullname"
 					>
 						Your Name
@@ -107,7 +107,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 
 				<div className="relative w-full  md:w-80">
 					<Label
-						className="bg-background absolute -top-2 left-3 px-1"
+						className="absolute -top-2 left-3 bg-background px-1"
 						htmlFor="username"
 					>
 						Username
@@ -128,7 +128,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 
 				<div className="relative w-full md:w-80">
 					<Label
-						className="bg-background absolute -top-2 left-3 px-1"
+						className="absolute -top-2 left-3 bg-background px-1"
 						htmlFor="website"
 					>
 						Website

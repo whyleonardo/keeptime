@@ -39,7 +39,7 @@ export const MemoryCard = ({
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="text-muted-foreground mb-2 self-center">
+					<span className="mb-2 self-center text-muted-foreground">
 						{dateFormat(new Date(memory.created_at))}
 					</span>
 
@@ -68,7 +68,7 @@ export const MemoryCard = ({
 							</AvatarFallback>
 						</Avatar>
 
-						<span className="text-muted-foreground group-hover:text-muted-foreground/80 font-semibold transition-colors">
+						<span className="font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
 							{targetProfile(memory)?.username ||
 								targetProfile(memory)?.full_name}
 						</span>

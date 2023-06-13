@@ -55,7 +55,7 @@ export const MediaPicker = ({ field }: any) => {
 						/>
 					)
 				) : (
-					<div className="text-muted-foreground flex h-36 w-full items-center justify-center gap-1 rounded border-2 border-dashed transition-all duration-300 hover:brightness-150">
+					<div className="flex h-36 w-full items-center justify-center gap-1 rounded border-2 border-dashed text-muted-foreground transition-all duration-300 hover:brightness-150">
 						<p className="text-center">Upload a file</p>
 						<FileText className="h-4 w-4" />
 					</div>
