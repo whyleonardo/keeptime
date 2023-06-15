@@ -87,7 +87,7 @@ export const CreateMemoryForm = ({
 			<ScrollArea className="h-screen w-full bg-transparent">
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 pb-20"
+					className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 md:pb-20"
 				>
 					<FormField
 						control={form.control}
