@@ -8,15 +8,29 @@ import {
 	MoreVertical,
 	Loader2,
 	LogOut,
+	Mail,
+	Album,
+	CalendarDays,
+	UserCircle2,
+	AtSign,
+	Heart,
 	Plus,
+	Settings,
 	type Icon as LucideIcon
 } from 'lucide-react'
 
 export type Icon = LucideIcon
 
 export const Icons = {
+	album: Album,
+	settings: Settings,
 	chevronLeft: ChevronLeft,
 	chevronDown: ChevronDown,
+	date: CalendarDays,
+	website: AtSign,
+	heart: Heart,
+	user: UserCircle2,
+	mail: Mail,
 	plus: Plus,
 	logout: LogOut,
 	spinner: Loader2,
