@@ -32,24 +32,23 @@ export const MemoryCard = ({
 	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
 
 	return (
-		<Card className="flex h-full w-full flex-col items-center overflow-hidden lg:w-5/6">
+		<Card className="flex h-full w-full flex-col items-center overflow-hidden">
 			<CardHeader>
 				<CardTitle>{memory.title}</CardTitle>
 			</CardHeader>
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="mb-2 self-center text-muted-foreground">
+					<span className="text-muted-foreground mb-2 self-center">
 						{dateFormat(new Date(memory.created_at))}
 					</span>
-
 					{mediaType == 'image' ? (
 						<Image
 							src={publicUrl}
 							width={480}
 							height={360}
 							alt=""
-							className="aspect-[9/16] w-full rounded md:aspect-square"
+							className="aspect-auto w-full rounded"
 						/>
 					) : (
 						<video src={publicUrl} controls className="aspect-video" />
@@ -68,7 +67,7 @@ export const MemoryCard = ({
 							</AvatarFallback>
 						</Avatar>
 
-						<span className="font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
+						<span className="text-muted-foreground group-hover:text-muted-foreground/80 font-semibold transition-colors">
 							{targetProfile(memory)?.username ||
 								targetProfile(memory)?.full_name}
 						</span>

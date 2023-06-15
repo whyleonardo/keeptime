@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -18,6 +19,7 @@ import { MediaPicker } from '@/components/ui/media-picker'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Switch } from '@/components/ui/switch'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from '@/components/ui/use-toast'
 
 import { memorySchema } from '@/lib/validations/memory'
 import { sbClient as supabase } from '@/services/supabase/client'
@@ -30,6 +32,7 @@ export const CreateMemoryForm = ({
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const [loading, setLoading] = useState(false)
+	const router = useRouter()
 
 	const form = useForm<z.infer<typeof memorySchema>>({
 		resolver: zodResolver(memorySchema),
@@ -45,8 +48,6 @@ export const CreateMemoryForm = ({
 		const {
 			data: { user }
 		} = await supabase.auth.getUser()
-
-		console.log(values.media)
 
 		const mediaType = values.media.type.includes('image') ? 'image' : 'video'
 
@@ -71,14 +72,22 @@ export const CreateMemoryForm = ({
 
 		setOpen(false)
 		setLoading(false)
+
+		router.refresh()
+
+		return toast({
+			title: 'Memory created',
+			description: 'Your memory was created successfully',
+			variant: 'success'
+		})
 	}
 
 	return (
 		<Form {...form}>
-			<ScrollArea className="h-screen bg-transparent">
+			<ScrollArea className="h-screen w-full bg-transparent">
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="min-h-max space-y-8 overflow-y-auto pb-20"
+					className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 pb-20"
 				>
 					<FormField
 						control={form.control}
