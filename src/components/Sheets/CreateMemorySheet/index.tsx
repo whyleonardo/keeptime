@@ -62,9 +62,9 @@ export const CreateMemorySheet = () => {
 					</SheetTrigger>
 
 					<SheetContent
-						className="sm:hidden"
+						className="pt-10 sm:hidden"
 						setOpen={setOpenMobile}
-						size="content"
+						size="full"
 						position="bottom"
 					>
 						<SheetHeader>
