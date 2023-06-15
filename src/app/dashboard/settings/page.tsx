@@ -18,8 +18,7 @@ export default async function SettingsPage() {
 		.from('profiles')
 		.select('*')
 		.eq('id', user?.id)
-
-	const currentUser = data?.at(0)
+		.single()
 
 	return (
 		<div className="flex w-full flex-col gap-8">
@@ -27,7 +26,7 @@ export default async function SettingsPage() {
 				Manage account and website settings.
 			</span>
 
-			<EditProfileForm profile={currentUser} />
+			<EditProfileForm profile={data} />
 		</div>
 	)
 }
