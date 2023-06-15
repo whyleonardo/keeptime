@@ -15,11 +15,7 @@ export async function middleware(req: NextRequest) {
 		data: { session }
 	} = await supabase.auth.getSession()
 
-	if (
-		(session && pathname === '/') ||
-		(session && pathname === '/login') ||
-		(session && pathname === '/register')
-	) {
+	if ((session && pathname === '/') || (session && pathname === '/login')) {
 		const redirectUrl = req.nextUrl.clone()
 		redirectUrl.pathname = '/dashboard'
 
@@ -37,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matchers: ['/', '/login', '/register', '/dashboard']
+	matchers: ['/', '/login', '/dashboard']
 }
