@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 }
 
 export default async function DashboardPage() {
-	const memories = (await supabase.from('memories').select('*')).data
+	const memories = (
+		await supabase
+			.from('memories')
+			.select('*')
+			.order('created_at', { ascending: false })
+	).data
 
 	const profiles = (await supabase.from('profiles').select('*')).data
 
@@ -26,19 +31,11 @@ export default async function DashboardPage() {
 		return media
 	}
 
-	const memoriesSortedByDate =
-		memories &&
-		memories.sort((a, b) => {
-			const dateA = new Date(a.created_at)
-			const dateB = new Date(b.created_at)
-			return dateB.getTime() - dateA.getTime()
-		})
-
 	return (
 		<>
 			<div className="relative mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md border p-6">
-				{memoriesSortedByDate &&
-					memoriesSortedByDate.map((memory) => (
+				{memories &&
+					memories.map((memory) => (
 						<MemoryCard
 							key={memory.id}
 							mediaPath={mediaPath}
