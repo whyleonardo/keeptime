@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export type Json =
 	| string
 	| number
@@ -17,6 +15,7 @@ export interface Database {
 					description: string | null
 					id: string
 					is_public: boolean
+					likes: number
 					media: string | null
 					media_path: string | null
 					title: string
@@ -27,6 +26,7 @@ export interface Database {
 					description?: string | null
 					id?: string
 					is_public?: boolean
+					likes?: number
 					media?: string | null
 					media_path?: string | null
 					title: string
@@ -37,6 +37,7 @@ export interface Database {
 					description?: string | null
 					id?: string
 					is_public?: boolean
+					likes?: number
 					media?: string | null
 					media_path?: string | null
 					title?: string
@@ -48,18 +49,13 @@ export interface Database {
 						columns: ['media']
 						referencedRelation: 'objects'
 						referencedColumns: ['id']
-					},
-					{
-						foreignKeyName: 'memories_user_id_fkey'
-						columns: ['user_id']
-						referencedRelation: 'profiles'
-						referencedColumns: ['id']
 					}
 				]
 			}
 			profiles: {
 				Row: {
 					avatar_url: string | null
+					created_at: string | null
 					email: string | null
 					full_name: string | null
 					id: string
@@ -69,6 +65,7 @@ export interface Database {
 				}
 				Insert: {
 					avatar_url?: string | null
+					created_at?: string | null
 					email?: string | null
 					full_name?: string | null
 					id: string
@@ -78,6 +75,7 @@ export interface Database {
 				}
 				Update: {
 					avatar_url?: string | null
+					created_at?: string | null
 					email?: string | null
 					full_name?: string | null
 					id?: string
