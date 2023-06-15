@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { SignOutButton } from '@/components/Buttons/SignOutButton'
 import { Icons } from '@/components/Icons'
@@ -24,8 +25,7 @@ export const PageHeader = async () => {
 		.from('profiles')
 		.select('*')
 		.eq('id', user?.id)
-
-	const currentUser = data?.at(0)
+		.single()
 
 	return (
 		<header className="sticky top-0 z-40 w-full border-b bg-background shadow-sm">
@@ -49,17 +49,40 @@ export const PageHeader = async () => {
 								<DropdownMenuContent align="end">
 									<DropdownMenuLabel>
 										<span className="block text-base font-medium">
-											{currentUser?.full_name}
+											{data?.full_name}
 										</span>
 										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
+
 									<DropdownMenuSeparator />
+									<DropdownMenuLabel>Dashboard</DropdownMenuLabel>
+
 									<DropdownMenuItem>
-										<Icons.logout className="h-4 w-6" />
-										<SignOutButton />
+										<Icons.album className="h-4 w-6" />
+										<Link className="w-full" href="/dashboard">
+											Memories
+										</Link>
 									</DropdownMenuItem>
+
+									<DropdownMenuSeparator />
+
+									<DropdownMenuLabel>Account</DropdownMenuLabel>
+
+									<div className="flex flex-col gap-2">
+										<DropdownMenuItem>
+											<Icons.settings className="h-4 w-6" />
+											<Link className="w-full" href="/dashboard/settings">
+												Settings
+											</Link>
+										</DropdownMenuItem>
+
+										<DropdownMenuItem>
+											<Icons.logout className="h-4 w-6" />
+											<SignOutButton />
+										</DropdownMenuItem>
+									</div>
 								</DropdownMenuContent>
 							</DropdownMenu>
 						)}
