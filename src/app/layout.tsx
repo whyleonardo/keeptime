@@ -47,9 +47,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					<AuthProvider>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 							<div className="relative flex h-full flex-col">
-								{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
-								{/* @ts-ignore -- Server Component */}
-								<PageHeader />
 								<div className="h-full flex-1">{children}</div>
 							</div>
 							<ScreenIndicator />
