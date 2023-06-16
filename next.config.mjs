@@ -4,7 +4,8 @@ const nextConfig = {
 	images: {
 		domains: [
 			'avatars.githubusercontent.com',
-			'urnklphwrzijxoeynmvd.supabase.co'
+			'urnklphwrzijxoeynmvd.supabase.co',
+			'cdn.discordapp.com'
 		]
 	}
 }
