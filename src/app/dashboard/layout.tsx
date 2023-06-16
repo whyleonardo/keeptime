@@ -13,9 +13,9 @@ export default function DashboardLayout({
 				<SidebarNav />
 			</aside>
 
-			<ScrollArea className="min-h-screen w-full p-6 pb-20">
+			<ScrollArea className="h-full w-full overflow-x-hidden p-6 md:pb-16">
 				<ScrollBar />
-				<DashboardPageTitle />
+				{/* <DashboardPageTitle /> */}
 				{children}
 			</ScrollArea>
 		</div>

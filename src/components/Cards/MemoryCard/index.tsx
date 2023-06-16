@@ -32,7 +32,7 @@ export const MemoryCard = ({
 	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
 
 	return (
-		<Card className="flex h-full w-full flex-col items-center overflow-hidden">
+		<Card className="flex h-full w-full flex-col items-center overflow-hidden last:pb-20">
 			<CardHeader>
 				<CardTitle>{memory.title}</CardTitle>
 			</CardHeader>
@@ -40,7 +40,7 @@ export const MemoryCard = ({
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
 					<span className="text-muted-foreground mb-2 self-center">
-						{/* {dateFormat(new Date(memory.created_at))} */}
+						{dateFormat(new Date(memory.created_at))}
 					</span>
 					{mediaType == 'image' ? (
 						<Image

@@ -84,81 +84,81 @@ export const CreateMemoryForm = ({
 
 	return (
 		<Form {...form}>
-			<ScrollArea className="h-screen w-full bg-transparent">
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 md:pb-20"
-				>
-					<FormField
-						control={form.control}
-						name="title"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Title</FormLabel>
-								<FormControl>
-									<Input placeholder="Memory title" {...field} />
-								</FormControl>
+			{/* <ScrollArea className="flex w-full items-center justify-center border bg-transparent"> */}
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 md:pb-20"
+			>
+				<FormField
+					control={form.control}
+					name="title"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Title</FormLabel>
+							<FormControl>
+								<Input placeholder="Memory title" {...field} />
+							</FormControl>
 
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-					<FormField
-						control={form.control}
-						name="description"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Description</FormLabel>
+				<FormField
+					control={form.control}
+					name="description"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Description</FormLabel>
+							<FormControl>
+								<Textarea
+									placeholder="Give an description to your memory"
+									{...field}
+									className="resize-none"
+								/>
+							</FormControl>
+
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={form.control}
+					name="is_public"
+					render={({ field }) => (
+						<FormItem>
+							<div className="flex items-center gap-2">
+								<FormLabel>Is Public?</FormLabel>
 								<FormControl>
-									<Textarea
-										placeholder="Give an description to your memory"
-										{...field}
-										className="resize-none"
+									<Switch
+										checked={field.value}
+										onCheckedChange={field.onChange}
 									/>
 								</FormControl>
+							</div>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="is_public"
-						render={({ field }) => (
-							<FormItem>
-								<div className="flex items-center gap-2">
-									<FormLabel>Is Public?</FormLabel>
-									<FormControl>
-										<Switch
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-								</div>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="media"
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<MediaPicker field={field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<Button type="submit">
-						{loading ? <Icons.spinner className="animate-spin" /> : 'Create'}
-					</Button>
-				</form>
-			</ScrollArea>
+				<FormField
+					control={form.control}
+					name="media"
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<MediaPicker field={field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<Button className="w-full" type="submit">
+					{loading ? <Icons.spinner className="animate-spin" /> : 'Create'}
+				</Button>
+			</form>
+			{/* </ScrollArea> */}
 		</Form>
 	)
 }

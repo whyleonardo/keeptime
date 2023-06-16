@@ -33,7 +33,9 @@ export default async function DashboardPage() {
 
 	return (
 		<>
-			<div className="relative mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md border p-6">
+			<h1 className="mb-2 text-4xl font-bold tracking-tight">Memories</h1>
+
+			<div className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md p-6 md:mb-0 md:border">
 				{memories &&
 					memories.map((memory) => (
 						<MemoryCard
