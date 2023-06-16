@@ -14,12 +14,14 @@ export const UserAuthForm = () => {
 	const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
 	const [isDiscordLoading, setIsDiscordLoading] = React.useState<boolean>(false)
 
+	console.log(process.env.SITE_URL, 'URL')
+
 	async function githubLogin() {
 		setIsGitHubLoading(true)
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: getURL()
+				redirectTo: process.env.SITE_URL
 			}
 		})
 
@@ -36,7 +38,7 @@ export const UserAuthForm = () => {
 		await supabase.auth.signInWithOAuth({
 			provider: 'discord',
 			options: {
-				redirectTo: getURL()
+				redirectTo: process.env.SITE_URL
 			}
 		})
 
@@ -59,7 +61,7 @@ export const UserAuthForm = () => {
 				{isGitHubLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.gitHub className="mr-2 h-4 w-4 fill-primary" />
+					<Icons.gitHub className="fill-primary mr-2 h-4 w-4" />
 				)}{' '}
 				Github
 			</button>
@@ -73,7 +75,7 @@ export const UserAuthForm = () => {
 				{isDiscordLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.discord className="mr-2 h-4 w-4 fill-primary" />
+					<Icons.discord className="fill-primary mr-2 h-4 w-4" />
 				)}{' '}
 				Discord
 			</button>
