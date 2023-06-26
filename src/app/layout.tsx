@@ -1,7 +1,6 @@
 import '@/styles/globals.css'
 import { Metadata } from 'next'
 
-import { PageHeader } from '@/components/PageHeader'
 import { ScreenIndicator } from '@/components/ScreenIndicator'
 import { Toaster } from '@/components/ui/toaster'
 

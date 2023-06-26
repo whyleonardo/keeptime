@@ -8,20 +8,20 @@ import { toast } from '@/components/ui/use-toast'
 
 import { cn } from '@/lib/utils'
 import { sbClient as supabase } from '@/services/supabase/client'
-import { getURL } from '@/utils/getURL'
 
-export const UserAuthForm = () => {
+export const UserAuthForm = ({
+	SITE_URL
+}: {
+	SITE_URL: string | undefined
+}) => {
 	const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
 	const [isDiscordLoading, setIsDiscordLoading] = React.useState<boolean>(false)
-
-	console.log(process.env.SITE_URL, 'URL')
-
 	async function githubLogin() {
 		setIsGitHubLoading(true)
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: process.env.SITE_URL
+				redirectTo: SITE_URL
 			}
 		})
 
@@ -38,7 +38,7 @@ export const UserAuthForm = () => {
 		await supabase.auth.signInWithOAuth({
 			provider: 'discord',
 			options: {
-				redirectTo: process.env.SITE_URL
+				redirectTo: SITE_URL
 			}
 		})
 
@@ -61,7 +61,7 @@ export const UserAuthForm = () => {
 				{isGitHubLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.gitHub className="fill-primary mr-2 h-4 w-4" />
+					<Icons.gitHub className="mr-2 h-4 w-4 fill-primary" />
 				)}{' '}
 				Github
 			</button>
@@ -75,7 +75,7 @@ export const UserAuthForm = () => {
 				{isDiscordLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.discord className="fill-primary mr-2 h-4 w-4" />
+					<Icons.discord className="mr-2 h-4 w-4 fill-primary" />
 				)}{' '}
 				Discord
 			</button>

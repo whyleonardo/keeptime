@@ -36,7 +36,7 @@ export const CreateMemorySheet = () => {
 				<SheetContent
 					className="hidden md:block md:max-w-lg"
 					setOpen={setOpen}
-					position="right"
+					side="right"
 				>
 					<SheetHeader>
 						<SheetTitle>Create Your Memory</SheetTitle>
@@ -65,8 +65,7 @@ export const CreateMemorySheet = () => {
 				<SheetContent
 					className="flex h-[95%] w-full flex-col items-center justify-center border sm:hidden md:invisible md:hidden"
 					setOpen={setOpenMobile}
-					// size="xl"
-					position="bottom"
+					side="bottom"
 				>
 					<SheetHeader>
 						<SheetTitle>Create Your Memory</SheetTitle>

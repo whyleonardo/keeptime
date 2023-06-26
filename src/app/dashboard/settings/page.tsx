@@ -21,12 +21,16 @@ export default async function SettingsPage() {
 		.single()
 
 	return (
-		<div className="flex w-full flex-col gap-8">
-			<span className="text-lg text-muted-foreground">
-				Manage account and website settings.
-			</span>
+		<>
+			<h1 className="mb-2 text-4xl font-bold tracking-tight">Settings</h1>
 
-			<EditProfileForm profile={data} />
-		</div>
+			<div className="flex w-full flex-col gap-8">
+				<span className="text-lg text-muted-foreground">
+					Manage account and website settings.
+				</span>
+
+				<EditProfileForm profile={data} />
+			</div>
+		</>
 	)
 }

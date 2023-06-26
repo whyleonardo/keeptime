@@ -30,13 +30,12 @@ export default async function DashboardPage() {
 		const { data: media } = supabase.storage.from('medias').getPublicUrl(path)
 		return media
 	}
-
 	return (
 		<>
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">Memories</h1>
 
 			<div className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md p-6 md:mb-0 md:border">
-				{memories &&
+				{memories?.length ? (
 					memories.map((memory) => (
 						<MemoryCard
 							key={memory.id}
@@ -44,7 +43,10 @@ export default async function DashboardPage() {
 							memory={memory}
 							targetProfile={targetProfile}
 						/>
-					))}
+					))
+				) : (
+					<p className="text-muted-foreground text-xl">No memories yet.</p>
+				)}
 
 				<CreateMemorySheet />
 			</div>
