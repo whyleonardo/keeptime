@@ -9,6 +9,12 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
+} from '@/components/ui/tooltip'
 
 import { Memory } from '@/types/memory'
 import { Profile } from '@/types/profile'
@@ -38,14 +44,23 @@ export const MemoryCard = ({
 				<CardTitle className="flex items-center gap-2">
 					{memory.title}
 					{!memory.is_public && (
-						<LockIcon className="h-4 w-4 text-muted-foreground" />
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger>
+									<LockIcon className="text-muted-foreground h-4 w-4" />
+								</TooltipTrigger>
+								<TooltipContent>
+									<p>This memory is not public</p>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
 					)}
 				</CardTitle>
 			</CardHeader>
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="mb-2 self-center text-muted-foreground">
+					<span className="text-muted-foreground mb-2 self-center">
 						{dateFormat(new Date(memory.created_at))}
 					</span>
 					{mediaType == 'image' ? (
@@ -73,7 +88,7 @@ export const MemoryCard = ({
 							</AvatarFallback>
 						</Avatar>
 
-						<span className="font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
+						<span className="text-muted-foreground group-hover:text-muted-foreground/80 font-semibold transition-colors">
 							{targetProfile(memory)?.username ||
 								targetProfile(memory)?.full_name}
 						</span>
