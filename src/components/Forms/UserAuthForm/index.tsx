@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
 import { Icons } from '@/components/Icons'
@@ -9,23 +10,25 @@ import { toast } from '@/components/ui/use-toast'
 import { cn } from '@/lib/utils'
 import { sbClient as supabase } from '@/services/supabase/client'
 
-export const UserAuthForm = ({
-	SITE_URL
-}: {
+interface UserAuthFormProps {
 	SITE_URL: string | undefined
-}) => {
+}
+
+export const UserAuthForm = ({ SITE_URL }: UserAuthFormProps) => {
 	const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
 	const [isDiscordLoading, setIsDiscordLoading] = React.useState<boolean>(false)
+	const router = useRouter()
+	console.log(`${SITE_URL}/auth/callback`)
 	async function githubLogin() {
 		setIsGitHubLoading(true)
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: SITE_URL
+				redirectTo: `${SITE_URL}/auth/callback`
 			}
 		})
-
 		setIsGitHubLoading(false)
+		router.refresh()
 
 		return toast({
 			title: 'Sucess',
@@ -38,11 +41,11 @@ export const UserAuthForm = ({
 		await supabase.auth.signInWithOAuth({
 			provider: 'discord',
 			options: {
-				redirectTo: SITE_URL
+				redirectTo: `${SITE_URL}/auth/callback`
 			}
 		})
-
 		setIsDiscordLoading(false)
+		router.refresh()
 
 		return toast({
 			title: 'Sucess',
