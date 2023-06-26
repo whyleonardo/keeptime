@@ -17,5 +17,5 @@ export async function GET(request: NextRequest) {
 	// URL to redirect to after sign in process completes
 	requestUrl.searchParams.delete('code')
 	requestUrl.pathname = '/dashboard'
-	return NextResponse.redirect(requestUrl)
+	return NextResponse.redirect(requestUrl.origin)
 }
