@@ -1,9 +1,4 @@
-# next-template
+# Keeptime
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
-
-## Usage
-
-```bash
-npx degit whyleonardo/next-shadcn-template <my-app>
-```
+### Keeptime is a platform that allows you to keep track of your
+memories. You can upload photos and videos, and share them with your friends.
