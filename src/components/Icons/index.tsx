@@ -15,7 +15,10 @@ import {
 	AtSign,
 	Heart,
 	Plus,
+	CreditCard,
 	Settings,
+	StarIcon,
+	LockIcon,
 	type Icon as LucideIcon
 } from 'lucide-react'
 
@@ -29,13 +32,16 @@ export const Icons = {
 	date: CalendarDays,
 	website: AtSign,
 	heart: Heart,
+	lock: LockIcon,
 	user: UserCircle2,
 	mail: Mail,
 	plus: Plus,
 	logout: LogOut,
+	star: StarIcon,
 	spinner: Loader2,
 	more: MoreVertical,
 	sun: SunMedium,
+	creditCard: CreditCard,
 	moon: Moon,
 	twitter: Twitter,
 	logo: (props: LucideProps) => (
