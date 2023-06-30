@@ -5,6 +5,7 @@ import { SignOutButton } from '@/components/Buttons/SignOutButton'
 import { Icons } from '@/components/Icons'
 import { MainNav } from '@/components/Nav/MainNav'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Badge } from '@/components/ui/badge'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -14,21 +15,24 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
+import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { sbServer as supabase } from '@/services/supabase/server'
 
 export const PageHeader = async () => {
-	const {
-		data: { user }
-	} = await supabase.auth.getUser()
+	const user = (await supabase.auth.getUser()).data.user
 
-	const { data } = await supabase
-		.from('profiles')
-		.select('*')
-		.eq('id', user?.id)
-		.single()
+	if (!user) {
+		return null
+	}
+
+	const profile = (
+		await supabase.from('profiles').select('*').eq('id', user?.id).single()
+	).data
+
+	const isPro = await getUserSubscriptionPlan(user?.id)
 
 	return (
-		<header className="sticky top-0 z-40 w-full border-b bg-background shadow-sm">
+		<header className="bg-background sticky top-0 z-40 w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -48,10 +52,19 @@ export const PageHeader = async () => {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent align="end">
 									<DropdownMenuLabel>
-										<span className="block text-base font-medium">
-											{data?.full_name}
-										</span>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<div className="flex items-center gap-1">
+											<span className="block text-base font-medium">
+												{profile?.full_name || profile?.username}
+											</span>
+
+											{isPro && (
+												<Badge variant="pro">
+													<span>Pro</span>
+													<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
+												</Badge>
+											)}
+										</div>
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
@@ -71,6 +84,13 @@ export const PageHeader = async () => {
 									<DropdownMenuLabel>Account</DropdownMenuLabel>
 
 									<div className="flex flex-col gap-2">
+										<DropdownMenuItem>
+											<Icons.creditCard className="h-4 w-6" />
+											<Link className="w-full" href="/dashboard/billing">
+												Billing
+											</Link>
+										</DropdownMenuItem>
+
 										<DropdownMenuItem>
 											<Icons.settings className="h-4 w-6" />
 											<Link className="w-full" href="/dashboard/settings">
