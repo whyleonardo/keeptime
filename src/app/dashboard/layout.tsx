@@ -1,12 +1,20 @@
+import { RequireUsernameDialog } from '@/components/Dialogs/RequireUsernameDialog'
 import { SidebarNav } from '@/components/Nav/SidebarNav'
 import { PageHeader } from '@/components/PageHeader'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
-export default function DashboardLayout({
+import { sbServer as supabase } from '@/services/supabase/server'
+
+export default async function DashboardLayout({
 	children
 }: {
 	children: React.ReactNode
 }) {
+	const user = (await supabase.auth.getUser()).data.user
+
+	if (!user) {
+		return null
+	}
 	return (
 		<>
 			{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
@@ -20,9 +28,10 @@ export default function DashboardLayout({
 
 				<ScrollArea className="h-full w-full overflow-x-hidden p-6 md:pb-16">
 					<ScrollBar />
-					{/* <DashboardPageTitle /> */}
 					{children}
 				</ScrollArea>
+
+				<RequireUsernameDialog userId={user?.id} />
 			</div>
 		</>
 	)

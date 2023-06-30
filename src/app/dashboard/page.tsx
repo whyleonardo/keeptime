@@ -20,16 +20,11 @@ export default async function DashboardPage() {
 			.order('created_at', { ascending: false })
 	).data
 
-	const profiles = (await supabase.from('profiles').select('*')).data
-
-	const targetProfile = (memory: { user_id: string }) =>
-		profiles &&
-		profiles.find((profile) => profile.id === memory.user_id && profile)
-
 	const mediaPath = (path: string) => {
 		const { data: media } = supabase.storage.from('medias').getPublicUrl(path)
 		return media
 	}
+
 	return (
 		<>
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">Memories</h1>
@@ -37,15 +32,12 @@ export default async function DashboardPage() {
 			<div className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md p-6 md:mb-0 md:border">
 				{memories?.length ? (
 					memories.map((memory) => (
-						<MemoryCard
-							key={memory.id}
-							mediaPath={mediaPath}
-							memory={memory}
-							targetProfile={targetProfile}
-						/>
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-ignore - React Server Component
+						<MemoryCard key={memory.id} mediaPath={mediaPath} memory={memory} />
 					))
 				) : (
-					<p className="text-xl text-muted-foreground">No memories yet.</p>
+					<p className="text-muted-foreground text-xl">No memories yet.</p>
 				)}
 
 				<CreateMemorySheet />
