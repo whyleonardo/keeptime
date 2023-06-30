@@ -7,6 +7,10 @@ export type Profile =
 			updated_at: string | null
 			username: string | null
 			website: string | null | undefined
+			stripeCurrentPeriodEnd: Date
+			stripeCustomerId: string
+			stripePriceId: string
+			stripeSubscriptionId: string | null
 	  }
 	| undefined
 	| null
