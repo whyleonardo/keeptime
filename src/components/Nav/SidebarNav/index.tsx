@@ -9,6 +9,7 @@ import { siteConfig } from '@/config/site'
 
 export const SidebarNav = () => {
 	const pathname = usePathname()
+
 	return (
 		<>
 			{siteConfig.sidebarDashboard.map((item, index) => (
