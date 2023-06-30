@@ -79,6 +79,13 @@
     @apply border-border;
   }
 
+	a,
+	button,
+	img,
+	picture {
+		@apply select-none;
+	}
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
