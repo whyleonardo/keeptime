@@ -54,7 +54,7 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger>
-									<Icons.lock className="text-muted-foreground h-4 w-4" />
+									<Icons.lock className="h-4 w-4 text-muted-foreground" />
 								</TooltipTrigger>
 								<TooltipContent>
 									<p>This memory is not public</p>
@@ -67,7 +67,7 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="text-muted-foreground mb-2 self-center">
+					<span className="mb-2 self-center text-muted-foreground">
 						{dateFormat(new Date(memory.created_at))}
 					</span>
 					{mediaType == 'image' ? (
@@ -95,12 +95,12 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 							</AvatarFallback>
 						</Avatar>
 
-						<div className="text-muted-foreground group-hover:text-muted-foreground/80 flex items-center gap-1 font-semibold transition-colors">
+						<div className="flex items-center gap-1 font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
 							<span>{user?.username || user?.full_name}</span>
 							{isPro && (
 								<Badge variant="pro">
 									<span>Pro</span>
-									<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
+									<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
 								</Badge>
 							)}
 						</div>

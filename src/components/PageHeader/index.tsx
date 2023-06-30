@@ -32,7 +32,7 @@ export const PageHeader = async () => {
 	const isPro = await getUserSubscriptionPlan(user?.id)
 
 	return (
-		<header className="bg-background sticky top-0 z-40 w-full border-b shadow-sm">
+		<header className="sticky top-0 z-40 w-full border-b bg-background shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -60,11 +60,11 @@ export const PageHeader = async () => {
 											{isPro && (
 												<Badge variant="pro">
 													<span>Pro</span>
-													<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
+													<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
 												</Badge>
 											)}
 										</div>
-										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
+										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
