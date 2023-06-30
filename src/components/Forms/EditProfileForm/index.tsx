@@ -59,7 +59,17 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 			})
 		} catch (error) {
 			setIsUpdatingProfile(false)
-			console.log(error)
+
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			// TODO: FIX THIS ERROR INSTANCE
+			if (error.code === 23514) {
+				return toast({
+					title: 'Error',
+					description: 'This username is invalid!',
+					variant: 'destructive'
+				})
+			}
 			return toast({
 				title: 'Error',
 				description: 'Username already taken!',
@@ -76,7 +86,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 			<div className="mb-4">
 				<h2 className="text-lg font-semibold">Edit Your Profile</h2>
 
-				<span className="text-sm text-muted-foreground">
+				<span className="text-muted-foreground text-sm">
 					Personalize your name, username and your website if you have.
 				</span>
 			</div>
@@ -84,7 +94,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 			<div className="flex flex-col gap-6">
 				<div className="relative w-full  md:w-80">
 					<Label
-						className="absolute -top-2 left-3 bg-background px-1"
+						className="bg-background absolute -top-2 left-3 px-1"
 						htmlFor="fullname"
 					>
 						Your Name
@@ -107,7 +117,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 
 				<div className="relative w-full  md:w-80">
 					<Label
-						className="absolute -top-2 left-3 bg-background px-1"
+						className="bg-background absolute -top-2 left-3 px-1"
 						htmlFor="username"
 					>
 						Username
@@ -128,7 +138,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 
 				<div className="relative w-full md:w-80">
 					<Label
-						className="absolute -top-2 left-3 bg-background px-1"
+						className="bg-background absolute -top-2 left-3 px-1"
 						htmlFor="website"
 					>
 						Website
