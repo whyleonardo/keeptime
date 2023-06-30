@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { Icons } from '@/components/Icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
 import {
 	Card,
 	CardContent,
@@ -16,27 +18,32 @@ import {
 	TooltipTrigger
 } from '@/components/ui/tooltip'
 
+import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
+import { sbServer as supabase } from '@/services/supabase/server'
 import { Memory } from '@/types/memory'
-import { Profile } from '@/types/profile'
 import { dateFormat } from '@/utils/dateFormat'
-import { LockIcon } from 'lucide-react'
 
 interface MemoryCardProps {
 	memory: Memory
-	targetProfile: (string: { user_id: string }) => Profile
 	mediaPath: (path: string) => {
 		publicUrl: string
 	}
 }
 
-export const MemoryCard = ({
-	memory,
-	targetProfile,
-	mediaPath
-}: MemoryCardProps) => {
+export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 	const { publicUrl } = mediaPath(memory?.media_path as string)
 
 	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
+
+	const user = (
+		await supabase
+			.from('profiles')
+			.select('*')
+			.eq('id', memory.user_id)
+			.single()
+	).data
+
+	const { isPro } = await getUserSubscriptionPlan(user?.id as string)
 
 	return (
 		<Card className="flex h-full w-full flex-col items-center overflow-hidden last:pb-20">
@@ -47,7 +54,7 @@ export const MemoryCard = ({
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger>
-									<LockIcon className="text-muted-foreground h-4 w-4" />
+									<Icons.lock className="text-muted-foreground h-4 w-4" />
 								</TooltipTrigger>
 								<TooltipContent>
 									<p>This memory is not public</p>
@@ -76,22 +83,27 @@ export const MemoryCard = ({
 					)}
 
 					<Link
-						href={`/dashboard/profile/${targetProfile(memory)?.username}`}
+						href={`/dashboard/profile/${user?.username}`}
 						className="group ml-2 mt-2 flex items-center gap-1 self-start "
 					>
 						<Avatar className="h-5 w-5">
 							{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
 							{/* @ts-ignore */}
-							<AvatarImage src={targetProfile(memory)?.avatar_url} />
+							<AvatarImage src={user?.avatar_url} />
 							<AvatarFallback>
-								{targetProfile(memory)?.full_name?.at(0)?.toUpperCase()}
+								{user?.full_name?.at(0)?.toUpperCase()}
 							</AvatarFallback>
 						</Avatar>
 
-						<span className="text-muted-foreground group-hover:text-muted-foreground/80 font-semibold transition-colors">
-							{targetProfile(memory)?.username ||
-								targetProfile(memory)?.full_name}
-						</span>
+						<div className="text-muted-foreground group-hover:text-muted-foreground/80 flex items-center gap-1 font-semibold transition-colors">
+							<span>{user?.username || user?.full_name}</span>
+							{isPro && (
+								<Badge variant="pro">
+									<span>Pro</span>
+									<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
+								</Badge>
+							)}
+						</div>
 					</Link>
 				</div>
 
