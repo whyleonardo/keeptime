@@ -1,11 +1,12 @@
-// import { absoluteUrl } from '@/lib/utils'
+import { absolutePath } from '@/utils/absolutePath'
+
 import { stripe } from '@/services/stripe'
 import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { proPlan } from '@/services/stripe/subscriptions'
 import { sbServer as supabase } from '@/services/supabase/server'
 import { z } from 'zod'
 
-const billingUrl = 'http://localhost:3000/dashboard/billing'
+const billingUrl = absolutePath('dashboard/billing')
 
 export async function GET(req: Request) {
 	try {
