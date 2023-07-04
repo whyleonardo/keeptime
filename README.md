@@ -23,11 +23,13 @@
 
 ## Features
 
-📸 Upload photos and videos: Users can easily upload their favorite photos and videos to the app.
+📸 **Upload photos and videos**: Users can easily upload their favorite photos and videos to the app.
 
-🔒 Privacy settings: Choose whether to make your memories public or private. Control who can access them.
+🔒 **Privacy settings**: Choose whether to make your memories public or private. Control who can access them.
 
-🎊 Share with friends: Share your memories with friends and family through links or on social media.
+🎊 **Share with friends**: Share your memories with friends and family through links or on social media.
+
+💳 **Payment integration**: Seamlessly integrate payment systems to enable premium features or services.
 
 ## Roadmap
 
