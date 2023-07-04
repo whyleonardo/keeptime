@@ -12,9 +12,9 @@
 <p align="center">
   <a href="#description">Description</a> •
   <a href="#features">Features</a> •
+  <a href="#roadmap">Roadmap</a> •
   <a href="#installation">Installation</a> •
-  <a href="#contribution">Contribution</a> •
-  <a href="#license">License</a>
+  <a href="#contribution">Contribution</a> 
 </p>
 
 ## Description
@@ -29,26 +29,26 @@
 
 🎊 Share with friends: Share your memories with friends and family through links or on social media.
 
-🗂️ Organize memories: Keep your memories organized with categories or custom tags.
+## Roadmap
 
-🔍 Search: Quickly find memories based on keywords, dates, or tags.
+Here are the planned features for future releases of Keeptime:
+
+- [ ] 🗂️ **Organize memories**: Keep your memories organized with categories or custom tags.
+- [ ] 🔍 **Search**: Quickly find memories based on keywords, dates, or tags.
 
 ## Installation
 
 1. Clone this repository.
-2. Install the dependencies using `npm install`.
-3. Run the app using `npm start`.
+2. Install the dependencies using `pnpm install`.
+3. Run the app using `pnpm dev` or `pnpm build && pnpm start`.
 
 ## Contribution
 
 🤝 Contributions are welcome! If you want to contribute to Keeptime, please follow these steps:
 
 1. Fork this repository.
-2. Create a new branch for the feature or bug fix you want to implement (`git checkout -b feature/MyNewFeature`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push your changes to the remote repository (`git push origin feature/MyNewFeature`).
+2. Create a new branch for the feature or bug fix you want to implement (`git checkout -b feature/my-new-feature`).
+3. Commit your changes (`git commit -m 'feat: add new feature'`).
+4. Push your changes to the remote repository (`git push origin feature/my-new-feature`).
 5. Open a Pull Request on GitHub and provide a detailed description of your changes.
 
-## License
-
-📝 This project is licensed under the [XYZ License](link-to-license).
