@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { BillingForm } from '@/components/Forms/BillingForm'
@@ -6,12 +7,10 @@ import { stripe } from '@/services/stripe'
 import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { sbServer as supabase } from '@/services/supabase/server'
 
-// import { Metadata } from 'next'
-
-// export const metadata: Metadata = {
-// 	title: 'Billing',
-// 	description: 'Manage billing and subscription settings.'
-// }
+export const metadata: Metadata = {
+	title: 'Billing',
+	description: 'Manage billing and subscription settings.'
+}
 
 export default async function BillingPage() {
 	const user = (await supabase.auth.getUser()).data.user
