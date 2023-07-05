@@ -1,14 +1,9 @@
-import { CardSkeleton } from '@/components/Skeletons/CardSkeleton'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Icons } from '@/components/Icons'
 
 export default function DashboardLoading() {
 	return (
-		<>
-			<Skeleton className="mb-2 h-6 w-48" />
-
-			<div className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md p-6 md:mb-0 md:border">
-				<CardSkeleton />
-			</div>
-		</>
+		<div className="flex h-[80vh] items-center justify-center">
+			<Icons.spinner className="text-muted-foreground h-8 w-8 animate-spin" />
+		</div>
 	)
 }
