@@ -16,7 +16,7 @@ export default async function DashboardLayout({
 		return null
 	}
 	return (
-		<>
+		<div className="h-full min-h-screen">
 			{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
 			{/* @ts-ignore -- Server Component */}
 			<PageHeader />
@@ -33,6 +33,6 @@ export default async function DashboardLayout({
 
 				<RequireUsernameDialog userId={user?.id} />
 			</div>
-		</>
+		</div>
 	)
 }
