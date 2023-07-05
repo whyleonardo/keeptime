@@ -22,17 +22,22 @@ import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { sbServer as supabase } from '@/services/supabase/server'
 import { Memory } from '@/types/memory'
 import { dateFormat } from '@/utils/dateFormat'
+import clsx from 'clsx'
 
 interface MemoryCardProps {
 	memory: Memory
+	isAspectSquare?: boolean
 	mediaPath: (path: string) => {
 		publicUrl: string
 	}
 }
 
-export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
+export const MemoryCard = async ({
+	memory,
+	mediaPath,
+	isAspectSquare
+}: MemoryCardProps) => {
 	const { publicUrl } = mediaPath(memory?.media_path as string)
-
 	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
 
 	const user = (
@@ -54,7 +59,7 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger>
-									<Icons.lock className="h-4 w-4 text-muted-foreground" />
+									<Icons.lock className="text-muted-foreground h-4 w-4" />
 								</TooltipTrigger>
 								<TooltipContent>
 									<p>This memory is not public</p>
@@ -67,7 +72,7 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="mb-2 self-center text-muted-foreground">
+					<span className="text-muted-foreground mb-2 self-center">
 						{dateFormat(new Date(memory.created_at))}
 					</span>
 					{mediaType == 'image' ? (
@@ -76,7 +81,10 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 							width={480}
 							height={360}
 							alt=""
-							className="aspect-auto w-full rounded"
+							className={clsx(
+								'aspect-auto w-full rounded',
+								isAspectSquare && 'aspect-square'
+							)}
 						/>
 					) : (
 						<video src={publicUrl} controls className="aspect-video" />
@@ -95,12 +103,12 @@ export const MemoryCard = async ({ memory, mediaPath }: MemoryCardProps) => {
 							</AvatarFallback>
 						</Avatar>
 
-						<div className="flex items-center gap-1 font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
+						<div className="text-muted-foreground group-hover:text-muted-foreground/80 flex items-center gap-1 font-semibold transition-colors">
 							<span>{user?.username || user?.full_name}</span>
 							{isPro && (
 								<Badge variant="pro">
 									<span>Pro</span>
-									<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
+									<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
 								</Badge>
 							)}
 						</div>
