@@ -1,7 +1,7 @@
 <h1 align="center">
   <br>
-  <img src="/public/app-logo-light.png#gh-dark-mode-only" alt="Keeptime">
-  <img src="/public/app-logo-dark.png#gh-light-mode-only" alt="Keeptime">
+  <img src="/public/images/logo/app-logo-light.png#gh-dark-mode-only" alt="Keeptime">
+  <img src="/public/images/logo/app-logo-dark.png#gh-light-mode-only" alt="Keeptime">
   <br>
   Keeptime
   <br>
@@ -14,7 +14,7 @@
   <a href="#features">Features</a> •
   <a href="#roadmap">Roadmap</a> •
   <a href="#installation">Installation</a> •
-  <a href="#contribution">Contribution</a> 
+  <a href="#contribution">Contribution</a>
 </p>
 
 ## Description
