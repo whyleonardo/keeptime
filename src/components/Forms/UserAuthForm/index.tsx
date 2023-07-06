@@ -62,7 +62,7 @@ export const UserAuthForm = () => {
 				{isGitHubLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.gitHub className="fill-primary mr-2 h-4 w-4" />
+					<Icons.gitHub className="mr-2 h-4 w-4 fill-primary" />
 				)}{' '}
 				Github
 			</button>
@@ -76,7 +76,7 @@ export const UserAuthForm = () => {
 				{isDiscordLoading ? (
 					<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 				) : (
-					<Icons.discord className="fill-primary mr-2 h-4 w-4" />
+					<Icons.discord className="mr-2 h-4 w-4 fill-primary" />
 				)}{' '}
 				Discord
 			</button>

@@ -37,7 +37,7 @@ export default async function DashboardPage() {
 						<MemoryCard key={memory.id} mediaPath={mediaPath} memory={memory} />
 					))
 				) : (
-					<p className="text-muted-foreground text-xl">No memories yet.</p>
+					<p className="text-xl text-muted-foreground">No memories yet.</p>
 				)}
 
 				<CreateMemorySheet />

@@ -47,7 +47,7 @@ export default async function MyMemoriesPage() {
 						/>
 					))
 				) : (
-					<p className="text-muted-foreground text-xl">
+					<p className="text-xl text-muted-foreground">
 						You not created memories yet.
 					</p>
 				)}
