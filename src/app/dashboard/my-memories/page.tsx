@@ -33,7 +33,7 @@ export default async function MyMemoriesPage() {
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">My Memories</h1>
 			{/* className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md p-6 md:mb-0 md:border" */}
 
-			<div className="mb-32 mt-6 grid grid-cols-[repeat(auto-fit,minmax(200px,320px))] justify-center gap-6 rounded-md p-6 md:mb-0 md:border">
+			<div className="mb-32 mt-6 grid grid-cols-[repeat(auto-fit,minmax(200px,320px))] justify-center gap-6 rounded-md py-6 md:mb-0 md:border md:px-6">
 				{memories?.length ? (
 					memories.map((memory) => (
 						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -47,7 +47,7 @@ export default async function MyMemoriesPage() {
 						/>
 					))
 				) : (
-					<p className="text-xl text-muted-foreground">
+					<p className="text-muted-foreground text-xl">
 						You not created memories yet.
 					</p>
 				)}
