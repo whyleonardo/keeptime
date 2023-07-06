@@ -17,8 +17,6 @@ export const UserAuthForm = () => {
 	const [isDiscordLoading, setIsDiscordLoading] = React.useState<boolean>(false)
 	const router = useRouter()
 
-	console.log(absolutePath('auth/callback'))
-
 	async function githubLogin() {
 		setIsGitHubLoading(true)
 		await supabase.auth.signInWithOAuth({
