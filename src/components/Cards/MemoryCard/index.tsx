@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 import { Icons } from '@/components/Icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
 import {
 	Card,
 	CardContent,
@@ -50,6 +49,8 @@ export const MemoryCard = async ({
 		await supabase.from('profiles').select('*').eq('id', user_id).single()
 	).data
 
+	if (!user) return null
+
 	return (
 		<Card className="flex h-full w-full flex-col items-center overflow-hidden last:pb-20">
 			<CardHeader>
@@ -77,6 +78,7 @@ export const MemoryCard = async ({
 					</span>
 					{mediaType == 'image' ? (
 						<Image
+							priority
 							src={publicUrl}
 							width={480}
 							height={360}
@@ -95,9 +97,7 @@ export const MemoryCard = async ({
 						className="group ml-2 mt-2 flex items-center gap-1 self-start "
 					>
 						<Avatar className="h-5 w-5">
-							{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
-							{/* @ts-ignore */}
-							<AvatarImage src={user?.avatar_url} />
+							{user.avatar_url && <AvatarImage src={user.avatar_url} />}
 							<AvatarFallback>
 								{user?.full_name?.at(0)?.toUpperCase()}
 							</AvatarFallback>
