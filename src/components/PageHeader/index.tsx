@@ -72,12 +72,21 @@ export const PageHeader = async () => {
 									<DropdownMenuSeparator />
 									<DropdownMenuLabel>Dashboard</DropdownMenuLabel>
 
-									<DropdownMenuItem>
-										<Icons.album className="h-4 w-6" />
-										<Link className="w-full" href="/dashboard">
-											Memories
-										</Link>
-									</DropdownMenuItem>
+									<div className="flex flex-col gap-2">
+										<DropdownMenuItem>
+											<Icons.home className="h-4 w-6" />
+											<Link className="w-full" href="/dashboard">
+												Home
+											</Link>
+										</DropdownMenuItem>
+
+										<DropdownMenuItem>
+											<Icons.album className="h-4 w-6" />
+											<Link className="w-full" href="/dashboard/my-memories">
+												My memories
+											</Link>
+										</DropdownMenuItem>
+									</div>
 
 									<DropdownMenuSeparator />
 
@@ -96,6 +105,10 @@ export const PageHeader = async () => {
 											<Link className="w-full" href="/dashboard/settings">
 												Settings
 											</Link>
+										</DropdownMenuItem>
+
+										<DropdownMenuItem className="md:hidden">
+											<ThemeToggle isMobile />
 										</DropdownMenuItem>
 
 										<DropdownMenuItem>
