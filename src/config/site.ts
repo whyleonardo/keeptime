@@ -1,5 +1,5 @@
 export type SiteConfig = typeof siteConfig
-import { Album, Settings, CreditCard, Home } from 'lucide-react'
+import { Album, Settings, CreditCard, Home, User } from 'lucide-react'
 
 export const siteConfig = {
 	name: 'Keeptime',
@@ -26,9 +26,14 @@ export const siteConfig = {
 			icon: Home
 		},
 		{
-			title: 'My Memories',
+			title: 'My memories',
 			href: '/dashboard/my-memories',
 			icon: Album
+		},
+		{
+			title: 'Profile',
+			href: '/dashboard/profile',
+			icon: User
 		},
 		{
 			title: 'Billing',
