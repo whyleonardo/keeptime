@@ -15,6 +15,15 @@ export default async function DashboardLayout({
 	if (!user) {
 		return null
 	}
+
+	const profile = (
+		await supabase
+			.from('profiles')
+			.select('username')
+			.eq('id', user.id)
+			.single()
+	).data
+
 	return (
 		<div className="h-full min-h-screen">
 			{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
@@ -23,7 +32,7 @@ export default async function DashboardLayout({
 
 			<div className="flex h-full min-h-screen w-full pb-4">
 				<aside className="hidden w-72 flex-col gap-4 p-4 sm:flex">
-					<SidebarNav />
+					<SidebarNav username={profile?.username} />
 				</aside>
 
 				<ScrollArea className="h-full w-full overflow-x-hidden p-6 md:pb-16">
