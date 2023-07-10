@@ -29,7 +29,7 @@ export default async function DashboardPage() {
 		<>
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">Home</h1>
 
-			<div className="relative mb-32 mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md py-6 md:mb-0 md:border md:px-6">
+			<div className="relative mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md py-6 md:mb-0 md:border md:px-6">
 				{memories?.length ? (
 					memories.map((memory) => (
 						// eslint-disable-next-line @typescript-eslint/ban-ts-comment

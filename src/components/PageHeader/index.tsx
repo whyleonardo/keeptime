@@ -32,7 +32,7 @@ export const PageHeader = async () => {
 	const { isPro } = await getUserSubscriptionPlan(user?.id)
 
 	return (
-		<header className="w-full border-b bg-background shadow-sm">
+		<header className="bg-background w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -60,11 +60,11 @@ export const PageHeader = async () => {
 											{isPro && (
 												<Badge variant="pro">
 													<span>Pro</span>
-													<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
+													<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
 												</Badge>
 											)}
 										</div>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
@@ -83,7 +83,7 @@ export const PageHeader = async () => {
 										<DropdownMenuItem>
 											<Icons.album className="h-4 w-6" />
 											<Link className="w-full" href="/dashboard/my-memories">
-												My memories
+												My Memories
 											</Link>
 										</DropdownMenuItem>
 									</div>

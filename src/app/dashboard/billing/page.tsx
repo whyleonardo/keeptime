@@ -30,13 +30,18 @@ export default async function BillingPage() {
 	}
 
 	return (
-		<div className="flex flex-col gap-4">
-			<BillingForm
-				subscriptionPlan={{
-					...subscriptionPlan,
-					isCanceled
-				}}
-			/>
-		</div>
+		<>
+			<h1 className="mb-2 text-4xl font-bold tracking-tight">Billing</h1>
+
+			{/* "relative mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md py-6 md:mb-0 md:border md:px-6" */}
+			<div className="mt-6 flex flex-col gap-4">
+				<BillingForm
+					subscriptionPlan={{
+						...subscriptionPlan,
+						isCanceled
+					}}
+				/>
+			</div>
+		</>
 	)
 }

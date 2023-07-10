@@ -24,23 +24,27 @@ export default async function DashboardLayout({
 			.single()
 	).data
 
+	if (!profile) {
+		return null
+	}
+
 	return (
 		<div className="h-full min-h-screen">
 			{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
 			{/* @ts-ignore -- Server Component */}
 			<PageHeader />
 
-			<div className="flex h-full min-h-screen w-full pb-4">
-				<aside className="hidden w-72 flex-col gap-4 p-4 sm:flex">
-					<SidebarNav username={profile?.username} />
+			<div className="grid h-full min-h-screen w-full grid-cols-1 pb-4 md:grid-cols-[14rem_1fr]">
+				<aside className="hidden w-full flex-col gap-4 p-4 sm:flex">
+					<SidebarNav username={profile.username} />
 				</aside>
 
-				<ScrollArea className="h-full w-full overflow-x-hidden p-6 md:pb-16">
+				<ScrollArea>
 					<ScrollBar />
-					{children}
+					<main className="p-8 ">{children}</main>
 				</ScrollArea>
 
-				<RequireUsernameDialog userId={user?.id} />
+				<RequireUsernameDialog userId={user.id} />
 			</div>
 		</div>
 	)

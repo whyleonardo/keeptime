@@ -26,7 +26,7 @@ export const siteConfig = {
 			icon: Home
 		},
 		{
-			title: 'My memories',
+			title: 'My Memories',
 			href: '/dashboard/my-memories',
 			icon: Album
 		},

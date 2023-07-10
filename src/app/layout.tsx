@@ -45,7 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				>
 					<AuthProvider>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-							<div className="relative flex h-full flex-col">
+							<div className="relative flex h-full min-h-screen flex-col">
 								<div className="h-full flex-1">{children}</div>
 							</div>
 							<ScreenIndicator />
