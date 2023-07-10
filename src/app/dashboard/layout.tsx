@@ -41,7 +41,7 @@ export default async function DashboardLayout({
 
 				<ScrollArea>
 					<ScrollBar />
-					<main className="px-8 pb-28 pt-8 md:p-8">{children}</main>
+					<main className="px-8 pb-32 pt-8 md:p-8">{children}</main>
 				</ScrollArea>
 
 				<RequireUsernameDialog userId={user.id} />
