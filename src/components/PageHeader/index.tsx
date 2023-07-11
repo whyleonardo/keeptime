@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { ProBadge } from '@/components/Badges/ProBadge'
 import { SignOutButton } from '@/components/Buttons/SignOutButton'
 import { Icons } from '@/components/Icons'
 import { MainNav } from '@/components/Nav/MainNav'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { Badge } from '@/components/ui/badge'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -15,7 +15,6 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
-import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { sbServer as supabase } from '@/services/supabase/server'
 
 export const PageHeader = async () => {
@@ -29,10 +28,8 @@ export const PageHeader = async () => {
 		await supabase.from('profiles').select('*').eq('id', user?.id).single()
 	).data
 
-	const { isPro } = await getUserSubscriptionPlan(user?.id)
-
 	return (
-		<header className="w-full border-b bg-background shadow-sm">
+		<header className="bg-background w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -56,15 +53,10 @@ export const PageHeader = async () => {
 											<span className="block text-base font-medium">
 												{profile?.full_name || profile?.username}
 											</span>
-
-											{isPro && (
-												<Badge variant="pro">
-													<span>Pro</span>
-													<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
-												</Badge>
-											)}
+											{/* @ts-expect-error Async Server Component */}
+											<ProBadge id={user.id} />
 										</div>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
