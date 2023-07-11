@@ -1,4 +1,4 @@
-import { RequireUsernameDialog } from '@/components/Dialogs/RequireUsernameDialog'
+import { RequiredUserInfoDialog } from '@/components/Dialogs/RequireUsernameDialog'
 import { SidebarNav } from '@/components/Nav/SidebarNav'
 import { PageHeader } from '@/components/PageHeader'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
@@ -17,12 +17,14 @@ export default async function DashboardLayout({
 	}
 
 	const profile = (
-		await supabase
-			.from('profiles')
-			.select('username')
-			.eq('id', user.id)
-			.single()
+		await supabase.from('profiles').select('*').eq('id', user.id).single()
 	).data
+
+	const profileInfo = {
+		full_name: profile?.full_name,
+		username: profile?.username,
+		id: profile?.id
+	}
 
 	if (!profile) {
 		return null
@@ -44,7 +46,7 @@ export default async function DashboardLayout({
 					<main className="px-8 pb-32 pt-8 md:p-8">{children}</main>
 				</ScrollArea>
 
-				<RequireUsernameDialog userId={user.id} />
+				<RequiredUserInfoDialog profile={profileInfo} />
 			</div>
 		</div>
 	)
