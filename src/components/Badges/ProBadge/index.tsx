@@ -15,7 +15,7 @@ export const ProBadge = async ({ id }: ProBadgeProps) => {
 			{isPro && (
 				<Badge className="select-none" variant="pro">
 					<span>Pro</span>
-					<Icons.star className="fill-muted-foreground h-[0.60rem] w-[0.60rem]" />
+					<Icons.star className="h-[0.60rem] w-[0.60rem] fill-muted-foreground" />
 				</Badge>
 			)}
 		</>
