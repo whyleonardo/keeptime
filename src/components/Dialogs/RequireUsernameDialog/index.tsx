@@ -21,15 +21,19 @@ import { sbClient as supabase } from '@/services/supabase/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-interface RequireUsernameDialogProps {
-	userId: string
+interface RequiredUserInfoDialogProps {
+	profile: {
+		full_name: string | null | undefined
+		username: string | null | undefined
+		id: string | undefined
+	}
 }
 
-type FormData = Pick<z.infer<typeof profileSchema>, 'username'>
+type FormData = Omit<z.infer<typeof profileSchema>, 'website'>
 
-export const RequireUsernameDialog = ({
-	userId
-}: RequireUsernameDialogProps) => {
+export const RequiredUserInfoDialog = ({
+	profile: { id, full_name, username }
+}: RequiredUserInfoDialogProps) => {
 	const [open, setOpen] = useState(false)
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false)
 
@@ -44,15 +48,16 @@ export const RequireUsernameDialog = ({
 	async function onSubmit() {
 		setIsUpdatingProfile(true)
 
-		const username = getValues('username')
+		const { fullname, username } = getValues()
 
 		try {
 			await supabase
 				.from('profiles')
 				.update({
-					username: username
+					username: username,
+					fullname: fullname
 				})
-				.eq('id', userId)
+				.eq('id', id)
 				.throwOnError()
 
 			setIsUpdatingProfile(false)
@@ -88,14 +93,10 @@ export const RequireUsernameDialog = ({
 	useEffect(() => {
 		async function checkIfUserHaveAnUsername() {
 			const profile = (
-				await supabase
-					.from('profiles')
-					.select('username')
-					.eq('id', userId)
-					.single()
+				await supabase.from('profiles').select('*').eq('id', id).single()
 			).data
 
-			if (!profile?.username) {
+			if (!profile?.username || !profile?.full_name) {
 				return setOpen(true)
 			}
 		}
@@ -116,7 +117,7 @@ export const RequireUsernameDialog = ({
 				<div className="flex w-full items-center gap-4 rounded-md p-4">
 					<div className="relative w-full md:w-80">
 						<Label
-							className="absolute -top-2 left-3 bg-background px-1"
+							className="bg-background absolute -top-2 left-3 px-1"
 							htmlFor="required-username"
 						>
 							Username
@@ -125,12 +126,37 @@ export const RequireUsernameDialog = ({
 							autoComplete="off"
 							aria-autocomplete="none"
 							spellCheck={false}
-							{...register('username')}
+							{...register('username', {
+								value: username || undefined
+							})}
 							id="required-username"
 						/>
 						{errors.username && (
 							<p className="mt-1 text-xs text-red-500">
 								{errors.username.message}
+							</p>
+						)}
+					</div>
+
+					<div className="relative w-full md:w-80">
+						<Label
+							className="bg-background absolute -top-2 left-3 px-1"
+							htmlFor="required-fullName"
+						>
+							Username
+						</Label>
+						<Input
+							autoComplete="off"
+							aria-autocomplete="none"
+							spellCheck={false}
+							{...register('fullname', {
+								value: full_name || undefined
+							})}
+							id="required-fullName"
+						/>
+						{errors.fullname && (
+							<p className="mt-1 text-xs text-red-500">
+								{errors.fullname.message}
 							</p>
 						)}
 					</div>
