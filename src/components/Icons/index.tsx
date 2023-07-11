@@ -20,6 +20,7 @@ import {
 	Settings,
 	StarIcon,
 	LockIcon,
+	Link,
 	type Icon as LucideIcon
 } from 'lucide-react'
 
@@ -27,6 +28,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
 	album: Album,
+	link: Link,
 	settings: Settings,
 	chevronLeft: ChevronLeft,
 	chevronDown: ChevronDown,
