@@ -1,4 +1,4 @@
-import { RequiredUserInfoDialog } from '@/components/Dialogs/RequireUsernameDialog'
+import { RequiredUserInfoDialog } from '@/components/Dialogs/RequiredUserInfoDialog'
 import { SidebarNav } from '@/components/Nav/SidebarNav'
 import { PageHeader } from '@/components/PageHeader'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
