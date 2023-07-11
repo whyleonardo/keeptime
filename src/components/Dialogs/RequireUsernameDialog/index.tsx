@@ -55,7 +55,7 @@ export const RequiredUserInfoDialog = ({
 				.from('profiles')
 				.update({
 					username: username,
-					fullname: fullname
+					full_name: fullname
 				})
 				.eq('id', id)
 				.throwOnError()
@@ -110,14 +110,14 @@ export const RequiredUserInfoDialog = ({
 				<DialogHeader>
 					<DialogTitle>Ops!</DialogTitle>
 					<DialogDescription>
-						You don&apos;t have a username yet. Please, create one to continue.
+						We need some information about you to continue using Keeptime.
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="flex w-full items-center gap-4 rounded-md p-4">
+				<div className="flex w-full flex-col items-center gap-4 rounded-md p-4">
 					<div className="relative w-full md:w-80">
 						<Label
-							className="absolute -top-2 left-3 bg-background px-1"
+							className="bg-background absolute -top-2 left-3 px-1"
 							htmlFor="required-username"
 						>
 							Username
@@ -140,10 +140,10 @@ export const RequiredUserInfoDialog = ({
 
 					<div className="relative w-full md:w-80">
 						<Label
-							className="absolute -top-2 left-3 bg-background px-1"
+							className="bg-background absolute -top-2 left-3 px-1"
 							htmlFor="required-fullName"
 						>
-							Username
+							Fullname
 						</Label>
 						<Input
 							autoComplete="off"
