@@ -23,11 +23,6 @@ export default async function MyMemoriesPage() {
 			.order('created_at', { ascending: false })
 	).data
 
-	const mediaPath = (path: string) => {
-		const { data: media } = supabase.storage.from('medias').getPublicUrl(path)
-		return media
-	}
-
 	return (
 		<>
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">My Memories</h1>
@@ -36,18 +31,16 @@ export default async function MyMemoriesPage() {
 			<div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(200px,320px))] justify-center gap-6 rounded-md py-6 md:mb-0 md:border md:px-6">
 				{memories?.length ? (
 					memories.map((memory) => (
-						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-						// @ts-ignore - React Server Component
+						//  @ts-expect-error Async Server Component *
 						<MemoryCard
 							key={memory.id}
-							mediaPath={mediaPath}
 							memory={memory}
 							isAspectSquare
 							isExcerpt
 						/>
 					))
 				) : (
-					<p className="text-xl text-muted-foreground">
+					<p className="text-muted-foreground text-xl">
 						You not created memories yet.
 					</p>
 				)}

@@ -20,11 +20,6 @@ export default async function DashboardPage() {
 			.order('created_at', { ascending: false })
 	).data
 
-	const mediaPath = (path: string) => {
-		const { data: media } = supabase.storage.from('medias').getPublicUrl(path)
-		return media
-	}
-
 	return (
 		<>
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">Home</h1>
@@ -32,9 +27,8 @@ export default async function DashboardPage() {
 			<div className="relative mt-6 flex w-full flex-wrap justify-center gap-8 rounded-md py-6 md:mb-0 md:border md:px-6">
 				{memories?.length ? (
 					memories.map((memory) => (
-						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-						// @ts-ignore - React Server Component
-						<MemoryCard key={memory.id} mediaPath={mediaPath} memory={memory} />
+						//@ts-expect-error Async Server Component
+						<MemoryCard key={memory.id} memory={memory} />
 					))
 				) : (
 					<p className="text-muted-foreground text-xl">No memories yet.</p>
