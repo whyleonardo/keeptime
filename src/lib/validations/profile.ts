@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
 export const profileSchema = z.object({
-	username: z.string().min(3).max(15),
-	fullname: z.string().min(3).max(20),
+	username: z.string().min(2).max(15),
+	fullname: z.string().min(2).max(18),
 	website: z.union([
 		z
 			.string()
