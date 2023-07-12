@@ -15,7 +15,10 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+
 import { sbServer as supabase } from '@/services/supabase/server'
+import { getAvatarPath } from '@/utils/getAvatarPath'
 
 export const PageHeader = async () => {
 	const user = (await supabase.auth.getUser()).data.user
@@ -27,9 +30,11 @@ export const PageHeader = async () => {
 	const profile = (
 		await supabase.from('profiles').select('*').eq('id', user?.id).single()
 	).data
+	if (!profile) return null
+	const profileAvatar = getAvatarPath(profile.avatar_url)
 
 	return (
-		<header className="w-full border-b bg-background shadow-sm">
+		<header className="bg-background w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -37,13 +42,12 @@ export const PageHeader = async () => {
 						{user && (
 							<DropdownMenu>
 								<DropdownMenuTrigger className="flex items-center gap-1">
-									<Image
-										alt="user avatar"
-										width={24}
-										height={24}
-										className="h-8 w-8 rounded-full"
-										src={user?.user_metadata?.avatar_url}
-									/>
+									<Avatar className="h-8 w-8">
+										{profileAvatar && <AvatarImage src={profileAvatar} />}
+										<AvatarFallback>
+											{profile.full_name?.at(0)?.toUpperCase()}
+										</AvatarFallback>
+									</Avatar>
 
 									<Icons.chevronDown className="h-6 w-6" />
 								</DropdownMenuTrigger>
@@ -56,7 +60,7 @@ export const PageHeader = async () => {
 											{/* @ts-expect-error Async Server Component */}
 											<ProBadge id={user.id} />
 										</div>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
