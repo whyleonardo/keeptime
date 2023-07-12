@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -37,6 +38,8 @@ export const RequiredUserInfoDialog = ({
 	const [open, setOpen] = useState(false)
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false)
 
+	const router = useRouter()
+
 	const {
 		register,
 		getValues,
@@ -63,6 +66,8 @@ export const RequiredUserInfoDialog = ({
 			setIsUpdatingProfile(false)
 
 			setOpen(false)
+
+			router.refresh()
 
 			return toast({
 				title: 'Success',
@@ -106,7 +111,7 @@ export const RequiredUserInfoDialog = ({
 
 	return (
 		<Dialog open={open}>
-			<DialogContent displayCloseButton={false}>
+			<DialogContent className="w-11/12 md:w-full" displayCloseButton={false}>
 				<DialogHeader>
 					<DialogTitle>Ops!</DialogTitle>
 					<DialogDescription>
@@ -114,7 +119,7 @@ export const RequiredUserInfoDialog = ({
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="flex w-full flex-col items-center gap-4 rounded-md p-4">
+				<div className="flex w-full flex-col gap-4 rounded-md p-4">
 					<div className="relative w-full md:w-80">
 						<Label
 							className="bg-background absolute -top-2 left-3 px-1"
