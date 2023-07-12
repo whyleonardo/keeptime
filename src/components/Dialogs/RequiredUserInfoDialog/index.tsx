@@ -117,7 +117,7 @@ export const RequiredUserInfoDialog = ({
 				<div className="flex w-full flex-col items-center gap-4 rounded-md p-4">
 					<div className="relative w-full md:w-80">
 						<Label
-							className="absolute -top-2 left-3 bg-background px-1"
+							className="bg-background absolute -top-2 left-3 px-1"
 							htmlFor="required-username"
 						>
 							Username
@@ -140,10 +140,10 @@ export const RequiredUserInfoDialog = ({
 
 					<div className="relative w-full md:w-80">
 						<Label
-							className="absolute -top-2 left-3 bg-background px-1"
+							className="bg-background absolute -top-2 left-3 px-1"
 							htmlFor="required-fullName"
 						>
-							Fullname
+							Your Name
 						</Label>
 						<Input
 							autoComplete="off"
