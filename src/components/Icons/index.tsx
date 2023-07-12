@@ -11,15 +11,18 @@ import {
 	LogOut,
 	Mail,
 	Album,
+	Info,
 	CalendarDays,
 	UserCircle2,
 	AtSign,
+	Camera,
 	Heart,
 	Plus,
 	CreditCard,
 	Settings,
 	StarIcon,
 	LockIcon,
+	X,
 	Link,
 	type Icon as LucideIcon
 } from 'lucide-react'
@@ -28,6 +31,8 @@ export type Icon = LucideIcon
 
 export const Icons = {
 	album: Album,
+	info: Info,
+	camera: Camera,
 	link: Link,
 	settings: Settings,
 	chevronLeft: ChevronLeft,
@@ -39,6 +44,7 @@ export const Icons = {
 	user: UserCircle2,
 	mail: Mail,
 	plus: Plus,
+	x: X,
 	logout: LogOut,
 	home: Home,
 	star: StarIcon,
