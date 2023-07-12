@@ -83,7 +83,6 @@ export const CreateMemoryForm = ({
 
 	return (
 		<Form {...form}>
-			{/* <ScrollArea className="flex w-full items-center justify-center border bg-transparent"> */}
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="h-auto min-h-max w-full space-y-8 overflow-y-auto p-4 md:pb-20"
@@ -157,7 +156,6 @@ export const CreateMemoryForm = ({
 					{loading ? <Icons.spinner className="animate-spin" /> : 'Create'}
 				</Button>
 			</form>
-			{/* </ScrollArea> */}
 		</Form>
 	)
 }
