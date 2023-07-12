@@ -30,7 +30,7 @@ interface RequiredUserInfoDialogProps {
 	}
 }
 
-type FormData = Omit<z.infer<typeof profileSchema>, 'website'>
+type FormData = Omit<z.infer<typeof profileSchema>, 'website' | 'bio'>
 
 export const RequiredUserInfoDialog = ({
 	profile: { id, full_name, username }
