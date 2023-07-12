@@ -32,12 +32,11 @@ export default async function DashboardLayout({
 
 	return (
 		<div className="h-full min-h-screen">
-			{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
-			{/* @ts-ignore -- Server Component */}
+			{/* @ts-expect-error -- Server Component */}
 			<PageHeader />
 
 			<div className="grid h-full min-h-screen w-full grid-cols-1 pb-4 md:grid-cols-[14rem_1fr]">
-				<aside className="hidden w-full flex-col gap-4 p-4 sm:flex">
+				<aside className="hidden w-full flex-col gap-4 p-4 md:flex">
 					<SidebarNav username={profile.username} />
 				</aside>
 
