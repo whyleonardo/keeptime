@@ -56,7 +56,7 @@ export const AvatarPicker = ({ avatarUrl, field }: AvatarPickerProps) => {
 						width={360}
 						height={360}
 						src={avatarPreview}
-						className="border-muted aspect-square h-32 w-32 rounded-full border-2"
+						className="aspect-square h-32 w-32 rounded-full border-2 border-muted"
 					/>
 				) : field.value ? (
 					<Image
@@ -64,7 +64,7 @@ export const AvatarPicker = ({ avatarUrl, field }: AvatarPickerProps) => {
 						width={360}
 						height={360}
 						src={field.value}
-						className="border-muted aspect-square h-32 w-32 rounded-full border-2"
+						className="aspect-square h-32 w-32 rounded-full border-2 border-muted"
 					/>
 				) : avatar ? (
 					<Image
@@ -72,13 +72,13 @@ export const AvatarPicker = ({ avatarUrl, field }: AvatarPickerProps) => {
 						width={360}
 						height={360}
 						src={avatar}
-						className="border-muted aspect-square h-32 w-32 rounded-full border-2"
+						className="aspect-square h-32 w-32 rounded-full border-2 border-muted"
 					/>
 				) : (
-					<div className="bg-muted h-32 w-32 rounded-full border-2" />
+					<div className="h-32 w-32 rounded-full border-2 bg-muted" />
 				)}
 
-				<span className="bg-background absolute -bottom-2 right-4 rounded-full border-2 p-2 transition-transform group-hover:scale-105">
+				<span className="absolute -bottom-2 right-4 rounded-full border-2 bg-background p-2 transition-transform group-hover:scale-105">
 					<Icons.camera className=" h-4 w-4" />
 				</span>
 			</Label>
