@@ -15,7 +15,6 @@ export interface Database {
 					description: string | null
 					id: string
 					is_public: boolean
-					media: string | null
 					media_path: string | null
 					title: string
 					user_id: string
@@ -26,7 +25,6 @@ export interface Database {
 					description?: string | null
 					id?: string
 					is_public?: boolean
-					media?: string | null
 					media_path?: string | null
 					title: string
 					user_id: string
@@ -37,62 +35,54 @@ export interface Database {
 					description?: string | null
 					id?: string
 					is_public?: boolean
-					media?: string | null
 					media_path?: string | null
 					title?: string
 					user_id?: string
 					wishlist?: string[] | null
 				}
-				Relationships: [
-					{
-						foreignKeyName: 'memories_media_fkey'
-						columns: ['media']
-						referencedRelation: 'objects'
-						referencedColumns: ['id']
-					}
-				]
+				Relationships: []
 			}
 			profiles: {
 				Row: {
 					avatar_url: string | null
+					bio: string | null
 					created_at: string | null
 					email: string | null
-					full_name: string | null
+					full_name: string
 					id: string
 					stripe_current_period_end: string | null
 					stripe_customer_id: string
 					stripe_price_id: string
 					stripe_subscription_id: string
-					updated_at: string | null
-					username: string | null
+					username: string
 					website: string | null
 				}
 				Insert: {
 					avatar_url?: string | null
+					bio?: string | null
 					created_at?: string | null
 					email?: string | null
-					full_name?: string | null
+					full_name: string
 					id: string
 					stripe_current_period_end?: string | null
 					stripe_customer_id?: string
 					stripe_price_id?: string
 					stripe_subscription_id?: string
-					updated_at?: string | null
-					username?: string | null
+					username: string
 					website?: string | null
 				}
 				Update: {
 					avatar_url?: string | null
+					bio?: string | null
 					created_at?: string | null
 					email?: string | null
-					full_name?: string | null
+					full_name?: string
 					id?: string
 					stripe_current_period_end?: string | null
 					stripe_customer_id?: string
 					stripe_price_id?: string
 					stripe_subscription_id?: string
-					updated_at?: string | null
-					username?: string | null
+					username?: string
 					website?: string | null
 				}
 				Relationships: [
