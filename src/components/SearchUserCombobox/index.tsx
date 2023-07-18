@@ -76,7 +76,7 @@ export const SearchUserCombobox = ({ profiles }: SearchUserComboboxProps) => {
 											/>
 										)}
 										<AvatarFallback className="bg-foreground">
-											<Icons.user className="text-muted h-5 w-5" />
+											<Icons.user className="h-5 w-5 text-muted" />
 										</AvatarFallback>
 									</Avatar>
 
