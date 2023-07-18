@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { ProBadge } from '@/components/Badges/ProBadge'
@@ -17,24 +16,27 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
-import { sbServer as supabase } from '@/services/supabase/server'
+import { getAuthUser } from '@/utils/getAuthUser'
 import { getAvatarPath } from '@/utils/getAvatarPath'
+import { getProfileById } from '@/utils/getProfileById'
 
 export const PageHeader = async () => {
-	const user = (await supabase.auth.getUser()).data.user
+	const user = await getAuthUser()
 
 	if (!user) {
 		return null
 	}
 
-	const profile = (
-		await supabase.from('profiles').select('*').eq('id', user?.id).single()
-	).data
-	if (!profile) return null
+	const profile = await getProfileById(user.id)
+
+	if (!profile) {
+		return null
+	}
+
 	const profileAvatar = getAvatarPath(profile.avatar_url)
 
 	return (
-		<header className="w-full border-b bg-background shadow-sm">
+		<header className="bg-background w-full border-b shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -60,7 +62,7 @@ export const PageHeader = async () => {
 											{/* @ts-expect-error Async Server Component */}
 											<ProBadge id={user.id} />
 										</div>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
@@ -77,9 +79,12 @@ export const PageHeader = async () => {
 										</DropdownMenuItem>
 
 										<DropdownMenuItem>
-											<Icons.album className="h-4 w-6" />
-											<Link className="w-full" href="/dashboard/my-memories">
-												My Memories
+											<Icons.user className="h-4 w-6" />
+											<Link
+												className="w-full"
+												href={`/dashboard/${profile.username}`}
+											>
+												Profile
 											</Link>
 										</DropdownMenuItem>
 									</div>
