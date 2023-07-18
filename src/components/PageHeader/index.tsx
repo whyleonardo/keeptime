@@ -4,6 +4,7 @@ import { ProBadge } from '@/components/Badges/ProBadge'
 import { SignOutButton } from '@/components/Buttons/SignOutButton'
 import { Icons } from '@/components/Icons'
 import { MainNav } from '@/components/Nav/MainNav'
+import { SearchUserCombobox } from '@/components/SearchUserCombobox'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import {
 	DropdownMenu,
@@ -19,6 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { getAuthUser } from '@/utils/getAuthUser'
 import { getAvatarPath } from '@/utils/getAvatarPath'
 import { getProfileById } from '@/utils/getProfileById'
+import { getProfiles } from '@/utils/getProfiles'
 
 export const PageHeader = async () => {
 	const user = await getAuthUser()
@@ -28,6 +30,7 @@ export const PageHeader = async () => {
 	}
 
 	const profile = await getProfileById(user.id)
+	const profiles = await getProfiles()
 
 	if (!profile) {
 		return null
@@ -36,10 +39,13 @@ export const PageHeader = async () => {
 	const profileAvatar = getAvatarPath(profile.avatar_url)
 
 	return (
-		<header className="w-full border-b bg-background shadow-sm">
-			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+		<header className="bg-background w-full border-b shadow-sm">
+			<div className="container flex h-16 w-full items-center justify-between">
 				<MainNav />
-				<div className="flex flex-1 items-center justify-end space-x-4">
+
+				<SearchUserCombobox profiles={profiles} />
+
+				<div className="flex items-center space-x-4">
 					<nav className="flex items-center space-x-1">
 						{user && (
 							<DropdownMenu>
@@ -62,7 +68,7 @@ export const PageHeader = async () => {
 											{/* @ts-expect-error Async Server Component */}
 											<ProBadge id={user.id} />
 										</div>
-										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
+										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
