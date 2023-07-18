@@ -3,22 +3,21 @@ import { SidebarNav } from '@/components/Nav/SidebarNav'
 import { PageHeader } from '@/components/PageHeader'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
-import { sbServer as supabase } from '@/services/supabase/server'
+import { getAuthUser } from '@/utils/getAuthUser'
+import { getProfileById } from '@/utils/getProfileById'
 
 export default async function DashboardLayout({
 	children
 }: {
 	children: React.ReactNode
 }) {
-	const user = (await supabase.auth.getUser()).data.user
+	const user = await getAuthUser()
 
 	if (!user) {
 		return null
 	}
 
-	const profile = (
-		await supabase.from('profiles').select('*').eq('id', user.id).single()
-	).data
+	const profile = await getProfileById(user.id)
 
 	const profileInfo = {
 		full_name: profile?.full_name,

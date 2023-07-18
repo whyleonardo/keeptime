@@ -22,6 +22,7 @@ import { Memory } from '@/types/memory'
 import { dateFormat } from '@/utils/dateFormat'
 import { getAvatarPath } from '@/utils/getAvatarPath'
 import { getMedia } from '@/utils/getMedia'
+import { getProfileById } from '@/utils/getProfileById'
 import clsx from 'clsx'
 
 interface MemoryCardProps {
@@ -43,9 +44,7 @@ export const MemoryCard = async ({
 	const { publicUrl } = getMedia(media_path as string)
 	const mediaType = publicUrl.includes('image') ? 'image' : 'video'
 
-	const user = (
-		await supabase.from('profiles').select('*').eq('id', user_id).single()
-	).data
+	const user = await getProfileById(user_id)
 
 	if (!user) return null
 

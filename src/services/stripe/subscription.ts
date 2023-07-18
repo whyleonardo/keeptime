@@ -1,14 +1,12 @@
 // TODO: Fix this when we turn strict mode on.
 import { freePlan, proPlan } from '@/services/stripe/subscriptions'
-import { sbServer as supabase } from '@/services/supabase/server'
 import { UserSubscriptionPlan } from '@/types/subscription'
+import { getProfileById } from '@/utils/getProfileById'
 
 export async function getUserSubscriptionPlan(
 	userId: string
 ): Promise<UserSubscriptionPlan> {
-	const user = (
-		await supabase.from('profiles').select('*').eq('id', userId).single()
-	).data
+	const user = await getProfileById(userId)
 
 	if (!user) {
 		throw new Error('User not found')

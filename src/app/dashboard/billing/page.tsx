@@ -5,7 +5,7 @@ import { BillingForm } from '@/components/Forms/BillingForm'
 
 import { stripe } from '@/services/stripe'
 import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
-import { sbServer as supabase } from '@/services/supabase/server'
+import { getAuthUser } from '@/utils/getAuthUser'
 
 export const metadata: Metadata = {
 	title: 'Billing',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BillingPage() {
-	const user = (await supabase.auth.getUser()).data.user
+	const user = await getAuthUser()
 
 	if (!user) {
 		redirect('/login')

@@ -3,14 +3,14 @@ import { absolutePath } from '@/utils/absolutePath'
 import { stripe } from '@/services/stripe'
 import { getUserSubscriptionPlan } from '@/services/stripe/subscription'
 import { proPlan } from '@/services/stripe/subscriptions'
-import { sbServer as supabase } from '@/services/supabase/server'
+import { getAuthUser } from '@/utils/getAuthUser'
 import { z } from 'zod'
 
 const billingUrl = absolutePath('dashboard/billing')
 
-export async function GET(req: Request) {
+export async function GET() {
 	try {
-		const user = (await supabase.auth.getUser()).data.user
+		const user = await getAuthUser()
 		if (!user || !user.email) {
 			return new Response(null, { status: 403 })
 		}

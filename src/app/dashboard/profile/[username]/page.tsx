@@ -8,10 +8,11 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { buttonVariants } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardHeader } from '@/components/ui/card'
 
-import { sbServer as supabase } from '@/services/supabase/server'
 import { dateFormat } from '@/utils/dateFormat'
 import { getAvatarPath } from '@/utils/getAvatarPath'
 import { getMedia } from '@/utils/getMedia'
+import { getMemoriesByUserId } from '@/utils/getMemoriesByUserId'
+import { getProfileByUsername } from '@/utils/getProfileByUsername'
 
 interface ProfilePageProps {
 	params: {
@@ -26,25 +27,13 @@ export const metadata: Metadata = {
 export default async function ProfilePage({
 	params: { username }
 }: ProfilePageProps) {
-	const profile = (
-		await supabase
-			.from('profiles')
-			.select('*')
-			.eq('username', username)
-			.single()
-	).data
+	const profile = await getProfileByUsername(username)
 
 	if (!profile) {
 		return null
 	}
 
-	const memories = (
-		await supabase
-			.from('memories')
-			.select('*')
-			.eq('user_id', profile?.id)
-			.order('created_at', { ascending: false })
-	).data
+	const memories = await getMemoriesByUserId(profile.id)
 
 	const website =
 		profile.website && profile.website.replace(/(https?:\/\/)/, '')
@@ -53,8 +42,8 @@ export default async function ProfilePage({
 
 	return (
 		<div className="mb-32 grid grid-rows-[12rem_1fr] gap-12 overflow-hidden rounded-md border pb-6 md:mb-0 ">
-			<div className="relative w-full bg-muted">
-				<Avatar className="absolute -bottom-10 left-6 h-32 w-32 border-4 border-background">
+			<div className="bg-muted relative w-full">
+				<Avatar className="border-background absolute -bottom-10 left-6 h-32 w-32 border-4">
 					{profileAvatar && <AvatarImage src={profileAvatar} />}
 					<AvatarFallback className="text-5xl">
 						{profile?.full_name?.at(0)?.toUpperCase()}
@@ -72,7 +61,7 @@ export default async function ProfilePage({
 							{/* @ts-expect-error Async Server Component */}
 							<ProBadge id={profile.id} />
 						</span>
-						<span className="leading-tight text-muted-foreground">
+						<span className="text-muted-foreground leading-tight">
 							@{profile.username}
 						</span>
 
@@ -81,7 +70,7 @@ export default async function ProfilePage({
 								<div className="mb-2 w-full md:w-2/4">{profile.bio}</div>
 							)}
 
-							<span className="flex items-center gap-1 text-sm text-muted-foreground">
+							<span className="text-muted-foreground flex items-center gap-1 text-sm">
 								<Icons.date className="h-4 w-4" />
 								Sharing his moments since{' '}
 								{dateFormat(new Date(profile.created_at as string), true)}
@@ -97,7 +86,7 @@ export default async function ProfilePage({
 									})}
 								>
 									<span className="flex items-center gap-1">
-										<Icons.link className="h-4 w-4 text-muted-foreground" />
+										<Icons.link className="text-muted-foreground h-4 w-4" />
 										{website}
 									</span>
 								</a>
@@ -106,7 +95,7 @@ export default async function ProfilePage({
 					</div>
 
 					<div className="relative mt-4  rounded-md border p-6">
-						<strong className="absolute -top-3 left-4 bg-background px-2 text-lg">
+						<strong className="bg-background absolute -top-3 left-4 px-2 text-lg">
 							Memories
 						</strong>
 
@@ -114,11 +103,11 @@ export default async function ProfilePage({
 							{memories?.length ? (
 								memories.map((memory) => (
 									<Link href={`/memory/${memory.id}`} key={memory.id}>
-										<Card className="group w-fit space-y-2 pt-4 transition-colors hover:bg-muted/50">
+										<Card className="hover:bg-muted/50 group w-fit space-y-2 pt-4 transition-colors">
 											<CardHeader className="flex flex-col items-center">
 												<CardTitle>{memory.title}</CardTitle>
 
-												<span className="text-sm text-muted-foreground">
+												<span className="text-muted-foreground text-sm">
 													{dateFormat(new Date(memory.created_at as string))}
 												</span>
 											</CardHeader>
@@ -135,7 +124,7 @@ export default async function ProfilePage({
 									</Link>
 								))
 							) : (
-								<span className="text-center text-muted-foreground">
+								<span className="text-muted-foreground text-center">
 									This user has no memories.
 								</span>
 							)}
@@ -143,11 +132,11 @@ export default async function ProfilePage({
 					</div>
 
 					<div className="relative mt-4 rounded-md border p-6">
-						<strong className="absolute -top-3 left-4 bg-background px-2 text-lg">
+						<strong className="bg-background absolute -top-3 left-4 px-2 text-lg">
 							Albums
 						</strong>
 
-						<span className="text-center text-muted-foreground">
+						<span className="text-muted-foreground text-center">
 							This user has no albums.
 						</span>
 					</div>

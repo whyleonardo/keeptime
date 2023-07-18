@@ -3,9 +3,7 @@ import { Metadata } from 'next'
 import { MemoryCard } from '@/components/Cards/MemoryCard'
 import { CreateMemorySheet } from '@/components/Sheets/CreateMemorySheet'
 
-import { sbServer as supabase } from '@/services/supabase/server'
-
-export const revalidate = 60
+import { getMemories } from '@/utils/getMemories'
 
 export const metadata: Metadata = {
 	title: 'Dashboard',
@@ -13,12 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function DashboardPage() {
-	const memories = (
-		await supabase
-			.from('memories')
-			.select('*')
-			.order('created_at', { ascending: false })
-	).data
+	const memories = await getMemories()
 
 	return (
 		<>
@@ -31,7 +24,7 @@ export default async function DashboardPage() {
 						<MemoryCard key={memory.id} memory={memory} />
 					))
 				) : (
-					<p className="text-xl text-muted-foreground">No memories yet.</p>
+					<p className="text-muted-foreground text-xl">No memories yet.</p>
 				)}
 
 				<CreateMemorySheet />
