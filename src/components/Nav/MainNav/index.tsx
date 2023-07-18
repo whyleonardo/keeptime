@@ -19,7 +19,7 @@ export const MainNav = () => {
 			<div className="flex select-none items-center space-x-2">
 				{pathname === '/memories' ? (
 					<>
-						<Icons.logo className="fill-foreground h-6 w-6" />
+						<Icons.logo className="h-6 w-6 fill-foreground" />
 						<span className="inline-block font-bold">{siteConfig.name}</span>
 					</>
 				) : (
