@@ -6,8 +6,7 @@ import { usePathname } from 'next/navigation'
 import { buttonVariants } from '@/components/ui/button'
 
 import { siteConfig } from '@/config/site'
-import { clsx } from 'clsx'
-
+import { cn } from '@/lib/utils'
 interface SidebarNavProps {
 	username: string | null | undefined
 }
@@ -17,7 +16,6 @@ export const SidebarNav = ({ username }: SidebarNavProps) => {
 
 	return (
 		<>
-			<Link href="google.com">Olá</Link>
 			{siteConfig.sidebarDashboard.map((item, index) => (
 				<Link
 					prefetch={false}
@@ -29,7 +27,7 @@ export const SidebarNav = ({ username }: SidebarNavProps) => {
 					}
 					className={buttonVariants({
 						variant: 'ghost',
-						className: clsx(
+						className: cn(
 							'flex items-center !justify-start gap-2',
 							pathname === item.href && 'bg-primary text-primary-foreground',
 							pathname.includes('/profile') &&
