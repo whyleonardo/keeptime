@@ -28,7 +28,7 @@ export default async function SettingsPage() {
 			<h1 className="mb-2 text-4xl font-bold tracking-tight">Settings</h1>
 
 			<div className="flex w-full flex-col gap-8">
-				<span className="text-muted-foreground text-lg">
+				<span className="text-lg text-muted-foreground">
 					Manage account and website settings.
 				</span>
 

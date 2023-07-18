@@ -36,7 +36,7 @@ export const PageHeader = async () => {
 	const profileAvatar = getAvatarPath(profile.avatar_url)
 
 	return (
-		<header className="bg-background w-full border-b shadow-sm">
+		<header className="w-full border-b bg-background shadow-sm">
 			<div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
 				<MainNav />
 				<div className="flex flex-1 items-center justify-end space-x-4">
@@ -62,7 +62,7 @@ export const PageHeader = async () => {
 											{/* @ts-expect-error Async Server Component */}
 											<ProBadge id={user.id} />
 										</div>
-										<span className="text-muted-foreground block w-[200px] truncate text-sm font-normal">
+										<span className="block w-[200px] truncate text-sm font-normal text-muted-foreground">
 											{user.email}
 										</span>
 									</DropdownMenuLabel>
