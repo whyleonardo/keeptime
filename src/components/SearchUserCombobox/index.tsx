@@ -18,6 +18,8 @@ import {
 	PopoverTrigger
 } from '@/components/ui/popover'
 
+import { Icons } from '../Icons'
+
 import { cn } from '@/lib/utils'
 import { Profile } from '@/types/profile'
 import { getAvatarPath } from '@/utils/getAvatarPath'
@@ -54,38 +56,40 @@ export const SearchUserCombobox = ({ profiles }: SearchUserComboboxProps) => {
 					<CommandGroup>
 						{profiles &&
 							profiles.map((profile, index) => (
-								<div className="relative" key={profile.id}>
-									<Avatar className="absolute left-2 top-[50%] z-[99999] h-7 w-7 -translate-y-1/2">
+								// <div className="flex items-center" key={profile.id}>
+
+								<CommandItem
+									key={profile.id}
+									className={cn(
+										index > 4 ? 'hidden' : 'flex',
+										'h-10 p-0 px-2 items-center'
+									)}
+									onSelect={(currentValue) => {
+										setValue(currentValue === value ? '' : currentValue)
+										setOpen(false)
+									}}
+								>
+									<Avatar className="h-7 w-7">
 										{profile.avatar_url && (
 											<AvatarImage
 												src={getAvatarPath(profile.avatar_url) as string}
 											/>
 										)}
-										<AvatarFallback className="">
-											{profile.full_name?.at(0)?.toUpperCase()}
+										<AvatarFallback className="bg-foreground">
+											<Icons.user className="text-muted h-5 w-5" />
 										</AvatarFallback>
 									</Avatar>
-									<CommandItem
-										className={cn(
-											index > 4 ? 'hidden' : 'flex',
-											'h-10 p-0 px-2 items-center'
-										)}
-										onSelect={(currentValue) => {
-											setValue(currentValue === value ? '' : currentValue)
-											setOpen(false)
-										}}
+
+									<Link
+										className={buttonVariants({
+											variant: 'link',
+											className: 'h-full w-full !no-underline'
+										})}
+										href={`/profile/${profile.username}`}
 									>
-										<Link
-											className={buttonVariants({
-												variant: 'link',
-												className: 'h-full w-full underl !no-underline'
-											})}
-											href={`/profile/${profile.username}`}
-										>
-											{profile.username}
-										</Link>
-									</CommandItem>
-								</div>
+										{profile.username}
+									</Link>
+								</CommandItem>
 							))}
 					</CommandGroup>
 				</Command>
