@@ -17,12 +17,12 @@ export async function middleware(req: NextRequest) {
 
 	if ((session && pathname === '/') || (session && pathname === '/login')) {
 		const redirectUrl = req.nextUrl.clone()
-		redirectUrl.pathname = '/dashboard'
+		redirectUrl.pathname = '/memories'
 
 		return NextResponse.redirect(redirectUrl)
 	}
 
-	if (!session && pathname.includes('/dashboard')) {
+	if (!session && pathname.includes('/memories')) {
 		const redirectUrl = req.nextUrl.clone()
 		redirectUrl.pathname = '/'
 
@@ -33,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/', '/login', '/dashboard']
+	matcher: ['/', '/login', '/memories']
 }

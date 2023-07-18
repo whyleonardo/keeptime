@@ -17,7 +17,6 @@ import {
 	TooltipTrigger
 } from '@/components/ui/tooltip'
 
-import { sbServer as supabase } from '@/services/supabase/server'
 import { Memory } from '@/types/memory'
 import { dateFormat } from '@/utils/dateFormat'
 import { getAvatarPath } from '@/utils/getAvatarPath'
@@ -59,7 +58,7 @@ export const MemoryCard = async ({
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger>
-									<Icons.lock className="h-4 w-4 text-muted-foreground" />
+									<Icons.lock className="text-muted-foreground h-4 w-4" />
 								</TooltipTrigger>
 								<TooltipContent>
 									<p>This memory is not public</p>
@@ -72,7 +71,7 @@ export const MemoryCard = async ({
 
 			<CardContent className="flex w-full flex-col items-center lg:w-3/4">
 				<div className="flex w-full flex-col items-center">
-					<span className="mb-2 self-center text-sm text-muted-foreground">
+					<span className="text-muted-foreground mb-2 self-center text-sm">
 						{dateFormat(new Date(created_at))}
 					</span>
 					{mediaType == 'image' ? (
@@ -81,10 +80,11 @@ export const MemoryCard = async ({
 							width={480}
 							placeholder="blur"
 							blurDataURL={publicUrl}
+							priority
 							height={360}
 							alt=""
 							className={clsx(
-								'aspect-auto w-full rounded',
+								'aspect-auto w-full rounded shadow-sm',
 								isAspectSquare && 'aspect-square'
 							)}
 						/>
@@ -93,7 +93,7 @@ export const MemoryCard = async ({
 					)}
 
 					<Link
-						href={`/dashboard/profile/${user?.username}`}
+						href={`/profile/${user?.username}`}
 						className="group ml-2 mt-2 flex items-center gap-1 self-start "
 					>
 						<Avatar className="h-5 w-5">
@@ -103,7 +103,7 @@ export const MemoryCard = async ({
 							</AvatarFallback>
 						</Avatar>
 
-						<div className="flex items-center gap-1 font-semibold text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
+						<div className="text-muted-foreground group-hover:text-muted-foreground/80 flex items-center gap-1 font-semibold transition-colors">
 							<span>{user?.username || user?.full_name}</span>
 						</div>
 					</Link>

@@ -17,9 +17,9 @@ export const MainNav = () => {
 	return (
 		<div className="flex gap-6 md:gap-10">
 			<div className="flex select-none items-center space-x-2">
-				{pathname === '/dashboard' ? (
+				{pathname === '/memories' ? (
 					<>
-						<Icons.logo className="h-6 w-6 fill-foreground" />
+						<Icons.logo className="fill-foreground h-6 w-6" />
 						<span className="inline-block font-bold">{siteConfig.name}</span>
 					</>
 				) : (

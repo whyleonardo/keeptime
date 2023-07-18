@@ -17,6 +17,7 @@ export const SidebarNav = ({ username }: SidebarNavProps) => {
 
 	return (
 		<>
+			<Link href="google.com">Olá</Link>
 			{siteConfig.sidebarDashboard.map((item, index) => (
 				<Link
 					prefetch={false}

@@ -15,29 +15,29 @@ export const siteConfig = {
 			href: '/login'
 		},
 		{
-			title: 'Dashboard',
-			href: '/dashboard'
+			title: 'Memories',
+			href: '/memories'
 		}
 	],
 	sidebarDashboard: [
 		{
 			title: 'Home',
-			href: '/dashboard',
+			href: '/memories',
 			icon: Home
 		},
 		{
 			title: 'Profile',
-			href: '/dashboard/profile',
+			href: '/profile',
 			icon: UserCircle2
 		},
 		{
 			title: 'Billing',
-			href: '/dashboard/billing',
+			href: '/billing',
 			icon: CreditCard
 		},
 		{
 			title: 'Settings',
-			href: '/dashboard/settings',
+			href: '/settings',
 			icon: Settings
 		}
 	],
