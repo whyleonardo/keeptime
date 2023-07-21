@@ -59,6 +59,9 @@ dependencies:
   cmdk:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.7)(react-dom@18.2.0)(react@18.2.0)
+  intersection-observer:
+    specifier: ^0.12.2
+    version: 0.12.2
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -80,6 +83,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.44.3
     version: 7.44.3(react@18.2.0)
+  react-is-visible:
+    specifier: ^1.2.0
+    version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
   sharp:
     specifier: ^0.31.3
     version: 0.31.3
@@ -3058,6 +3064,12 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hoist-non-react-statics@3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -3117,6 +3129,10 @@ packages:
       has: 1.0.3
       side-channel: 1.0.4
     dev: true
+
+  /intersection-observer@0.12.2:
+    resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
+    dev: false
 
   /invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
@@ -4003,9 +4019,20 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-is-visible@1.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-052RH7aHdKrABOBH12wvS2zTAzJ8MnaswPvX2AQGq5wxvD8BnQ5vcnf0cA0cj2g4bjH0+qXz1AIkEL9ZlnN23A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@babel/runtime': 7.22.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-remove-scroll-bar@2.3.4(@types/react@18.2.7)(react@18.2.0):
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
